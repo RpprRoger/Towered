@@ -4,8 +4,9 @@
 package towered.internals;
 
 /**
- * @author Robert
+ * The Class InternalPipe.
  *
+ * @author Robert
  */
 public class InternalPipe {
 
