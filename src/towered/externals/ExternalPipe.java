@@ -1,6 +1,3 @@
-/*
- * Robert Preus-MacLaren
- */
 package towered.externals;
 
 import java.io.BufferedReader;

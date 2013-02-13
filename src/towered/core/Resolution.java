@@ -16,4 +16,8 @@ public class Resolution extends Rectangle {
      */
     private static final long serialVersionUID = 2962767746398723223L;
 
+    public Resolution(int width, int height) {
+        // Can't remember if the screen auto draws to the center, I'll write this anyway
+        super();
+    }
 }

@@ -1,3 +1,6 @@
+/*
+ * Robert Preus-MacLaren
+ */
 package towered.core;
 
 // TODO: Auto-generated Javadoc
@@ -7,10 +10,10 @@ package towered.core;
 public class Settings {
     
     /** The version. */
-    private static String version = "v0.1";
+    private static final String version = "v0.1";
     
     /** The window. */
-    private static String window = "Towered";
+    private static final String window = "Towered";
     
     /** The resolution. */
     private Resolution resolution;
@@ -23,20 +26,36 @@ public class Settings {
     /** The difficulty. */
     private double difficulty;
     
-    /**
-     * Instantiates a new settings.
-     *
-     * @param String the settings
-     */
-    public Settings(Settings s) {
-        
-    }
-    
+    /** The fullscreen. */
+    private boolean fullscreen;
+
     /**
      * Instantiates a new settings.
      */
     public Settings() {}
     
+    /**
+     * Gets the version.
+     *
+     * @return the version
+     */
+    public String getVersion() {
+        return Settings.version;
+    }
+    
+    /**
+     * Gets the window.
+     *
+     * @return the window
+     */
+    public String getWindow() {
+        return Settings.window;
+    }
+    
+    /*
+     * Getters and setters
+     *=============================================================*/
+
     /**
      * Set the resolution of the game.
      *
@@ -133,6 +152,21 @@ public class Settings {
      */
     public Settings setDifficulty(double difficulty) {
         this.difficulty = difficulty;
+        return this;
+    }
+    
+    /**
+     * @return the fullscreen
+     */
+    public boolean isFullscreen() {
+        return fullscreen;
+    }
+
+    /**
+     * @param fullscreen the fullscreen to set
+     */
+    public Settings setFullscreen(boolean fullscreen) {
+        this.fullscreen = fullscreen;
         return this;
     }
 
