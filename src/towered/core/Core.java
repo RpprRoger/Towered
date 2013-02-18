@@ -11,9 +11,7 @@ public class Core extends AbstractBase {
     /**
      * Instantiates a new core.
      */
-    public Core() {
-       SettingsFactory.get
-    }
+    public Core() {}
     
     /**
      * 

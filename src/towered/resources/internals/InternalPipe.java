@@ -1,7 +1,7 @@
 /**
  * @author Robert
  */
-package towered.internals;
+package towered.resources.internals;
 
 /**
  * The Class InternalPipe.

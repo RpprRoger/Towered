@@ -1,4 +1,4 @@
-package towered.externals;
+package towered.resources.externals;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

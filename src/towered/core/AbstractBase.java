@@ -1,6 +1,6 @@
 package towered.core;
 
-import towered.externals.ExternalPipe;
+import towered.resources.externals.ExternalPipe;
 
 /**
  * The Class AbstractBase.

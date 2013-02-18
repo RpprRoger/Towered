@@ -15,7 +15,7 @@ do a refresh on the project, don't forget!
     ? staticentites package to contain interface StaticEntity, eg map, turrets, shop etc. 
  - core package contains objects and factories used to launch and run the game.
     ? factories will generate objects from files using the external/internal pipe.
- - externals contains the external pipe class, which handles piping/streaming files from outside the jar
- - internals handles internal file streaming from within the jar, all going through the Resources class within the resources package
-    - resources package contains resource files for the game, and a Resource class; maybe this should contain resource paths, or a way to gather paths
+ - resources package contains resource files for the game, and a Resource class; maybe this should contain resource paths, or a way to gather paths
+    - externals contains the external pipe class, which handles piping/streaming files from outside the jar
+    - internals handles internal file streaming from within the jar, all going through the Resources class within the resources package
  - window package will handle the window and jframe/jpanel for rendering.
