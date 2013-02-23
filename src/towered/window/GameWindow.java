@@ -5,17 +5,19 @@
  */
 package towered.window;
 
+import java.awt.Window;
+
 /**
- * The Class Canvas.
+ * The Class Window.
  *
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
  * @created 18 Feb 2013
  * @project Towered
  */
-public interface Canvas {
-    
-    public void update();
-    
-    public void draw();
+public class GameWindow extends Window {
+
+    public GameWindow(Frame container) {
+        super(container);
+    }
     
 }

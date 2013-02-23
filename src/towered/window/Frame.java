@@ -20,4 +20,8 @@ public class Frame extends JFrame {
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -884878526198860112L;
     
+    public Frame() {
+        
+    }
+    
 }

@@ -1,17 +1,19 @@
 /**
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
- * @created 18 Feb 2013
+ * @created 23 Feb 2013
  * @project Towered
  */
-package towered.window;
+package towered.game;
+
+import towered.core.Core;
 
 /**
- * The Class Window.
- *
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
- * @created 18 Feb 2013
+ *
+ * @created 23 Feb 2013
+ *
  * @project Towered
  */
-public class Window {
-
+public class Towered extends Core {
+    
 }
