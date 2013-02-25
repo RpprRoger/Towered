@@ -1,5 +1,8 @@
 package towered.core;
 
+import towered.core.services.Service;
+import towered.core.services.SettingsFactory;
+
 /**
  * The Class Core.
  */
@@ -17,7 +20,7 @@ public class Core extends AbstractBase {
      * 
      */
     public Core initSettings() {
-        
+
         return this;
     }
     
