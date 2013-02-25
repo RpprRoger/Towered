@@ -11,16 +11,20 @@ public class Core extends AbstractBase {
     /** The settings. */
     private Settings settings;
     
+    
     /**
      * Instantiates a new core.
      */
-    public Core() {}
+    public Core() {
+        super();
+        init();
+    }
     
     /**
      * 
      */
-    public Core initSettings() {
-
+    public Core init() {
+        this.settings = this.getSettingsFactory().getSettings();
         return this;
     }
     

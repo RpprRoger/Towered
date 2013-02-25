@@ -8,6 +8,6 @@ package towered.core.services;
  *
  * @author Robert
  */
-public class InternalPipe {
+public class InternalPipe extends Service {
 
 }

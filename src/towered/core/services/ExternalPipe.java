@@ -7,12 +7,40 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import towered.core.AbstractBase;
-
-public class ExternalPipe extends AbstractBase {
+public class ExternalPipe extends Service {
     
     public ExternalPipe() {}
-
+    
+    /**
+     * Append to file.
+     *
+     * @param fileName the file name
+     * @param message the message
+     * @return true, if successful
+     */
+    public static boolean appendToFile(String fileName, String message) {
+        FileWriter output = null;
+        try {
+            output = new FileWriter(fileName, true);
+            BufferedWriter writer = new BufferedWriter(output);
+            writer.write(message);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                    return true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * This method reads a text file line by line and returns the string.
      *

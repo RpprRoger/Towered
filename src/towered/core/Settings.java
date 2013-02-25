@@ -10,10 +10,10 @@ package towered.core;
 public class Settings {
     
     /** The version. */
-    private static final String version = "v0.1";
+    private static final String VERSION = "v0.1";
     
     /** The window. */
-    private static final String window = "Towered";
+    private static final String WINDOW = "Towered";
     
     /** The resolution. */
     private Resolution resolution;
@@ -39,8 +39,8 @@ public class Settings {
      *
      * @return the version
      */
-    public String getVersion() {
-        return Settings.version;
+    public static String getVersion() {
+        return Settings.VERSION;
     }
     
     /**
@@ -48,8 +48,8 @@ public class Settings {
      *
      * @return the window
      */
-    public String getWindow() {
-        return Settings.window;
+    public static String getWindow() {
+        return Settings.WINDOW;
     }
     
     /*

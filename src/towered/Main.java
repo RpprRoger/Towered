@@ -1,6 +1,6 @@
 package towered;
 
-import towered.core.Core;
+import towered.game.Towered;
 
 public class Main {
     public static void main(String[] args) {

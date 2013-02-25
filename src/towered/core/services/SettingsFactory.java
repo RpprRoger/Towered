@@ -8,9 +8,6 @@ import towered.core.Settings;
  */
 public class SettingsFactory extends Service {
     
-    /** The path. */
-    private String path;
-    
     /**
      * Gets the settings.
      *
@@ -20,10 +17,6 @@ public class SettingsFactory extends Service {
         // Before we get and set in file system lets use a default.
 
         return this.instantiateDefaultSettings();
-    }
-    
-    public SettingsFactory get() {
-        return this;
     }
     
     /*
