@@ -24,6 +24,15 @@ public class Logger extends Service {
     public Logger() {
         this.logFile = Service.JAR_FILE + "towered.log";
     }
+        
+    /**
+     * Instantiates a new logger.
+     *
+     * @param logFile the log file
+     */
+    public Logger(String logFile) {
+        this.logFile = logFile;
+    }
     
     public boolean logToFile(String message) {
         return ExternalPipe.appendToFile(logFile, message);
@@ -33,15 +42,6 @@ public class Logger extends Service {
         String name = Settings.getWindow();
         
         String start = String.format("", name, date, time);
-    }
-    
-    /**
-     * Instantiates a new logger.
-     *
-     * @param logFile the log file
-     */
-    public Logger(String logFile) {
-        this.logFile = logFile;
     }
     
     /* Private helper functions
