@@ -22,7 +22,7 @@ public class Logger extends Service {
     private String logFile;
     
     public Logger() {
-        this.logFile = Service.JAR_FILE + "towered.log";
+        this.logFile = this.getJarDir() + Settings.WINDOW + "_" + Settings.VERSION + ".log";
     }
         
     /**
@@ -34,26 +34,44 @@ public class Logger extends Service {
         this.logFile = logFile;
     }
     
+    /**
+     * 
+     * @param message to append to the file
+     * @return boolean
+     */
     public boolean logToFile(String message) {
         return ExternalPipe.appendToFile(logFile, message);
     }
     
-    public void info(String message) {
-        String name = Settings.getWindow();
+    /**
+     * Info.
+     *
+     * @param message the message
+     */
+    public void info(String message) {        
+        String msg = String.format("", Settings.WINDOW, this.getDate(), this.getTime(), message);
         
-        String start = String.format("", name, date, time);
+        logToFile(msg);
     }
     
     /* Private helper functions
      * ============================*/
     
+    /**
+     * Get the current date formatted in dd.MM.yyyy
+     * @return The formatted String
+     */
     private String getDate() {
         Calendar cal = Calendar.getInstance();
         cal.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         return sdf.format(cal.getTime());
     }
     
+    /**
+     * Get the current time formatted in HH:mm:ss
+     * @return The formatted String
+     */
     private String getTime() {
         Calendar cal = Calendar.getInstance();
         cal.getTime();

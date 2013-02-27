@@ -5,9 +5,12 @@ Towered
 Minor caveat using eclipse; any file externally edited will not immediatly display updates in eclipse, it is possible to
 do a refresh on the project, don't forget!
 
-### Skeleton thoughts.
+### Project layout
 
-#### Packages
+    - towered
+        * Main.java
+
+#### Packages !!out of date
  - game package will contain classes exclusively for drawing the game and game logic.
     - ? entities package will contain the interface Entity and the different entities which will draw to the screen and have dx and dy etc
     - ? physics package should handle and contain all objects which need to move and clip
