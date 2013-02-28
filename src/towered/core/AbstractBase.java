@@ -2,7 +2,6 @@ package towered.core;
 
 import towered.core.services.ExternalPipe;
 import towered.core.services.InternalPipe;
-import towered.core.services.Logger;
 import towered.core.services.SettingsFactory;
 
 /**

@@ -15,14 +15,14 @@ package towered.core.services;
 public abstract class Service {
     
     /** The Constant JAR_FILE. */
-    private final String JAR_FILE = Service.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    private final static String JAR_FILE = Service.class.getProtectionDomain().getCodeSource().getLocation().getPath();
     
     /**
      * Get the jar file path
      * @return the path
      */
-    public String getJarFile() {
-        return this.JAR_FILE;
+    public static String getJarFile() {
+        return JAR_FILE;
     }
     
     /**
@@ -30,7 +30,7 @@ public abstract class Service {
      *
      * @return the jar dir
      */
-    public String getJarDir() {
+    public static String getJarDir() {
         int i = getJarFile().lastIndexOf('/');
         String dir = JAR_FILE.substring(0, i);
         return dir;

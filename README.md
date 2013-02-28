@@ -9,6 +9,8 @@ do a refresh on the project, don't forget!
 
     - towered
         * Main.java
+            | This file will instantiate 
+            |
         - core
             * AbstractBase.java
             * Core.java
@@ -23,6 +25,7 @@ do a refresh on the project, don't forget!
                 * SettingsFactory.java
         - game
             * Towered.java
+            ? this should contain some sort of game screen logger
         - resources
             * Resources.java
         - window
