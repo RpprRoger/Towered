@@ -22,6 +22,8 @@ public class Logger extends Service {
     
     private static String logFile = getJarDir() + Settings.WINDOW + "_" + Settings.VERSION + ".log";
     
+    
+    
     /**
      * Instantiates a new logger.
      *

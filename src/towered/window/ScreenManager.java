@@ -6,6 +6,7 @@
 package towered.window;
 
 import java.awt.Canvas;
+import java.awt.GraphicsDevice;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -25,17 +26,24 @@ public class ScreenManager {
     /** The window factory. */
     private WindowFactory windowFactory;
     
-    /** The active game canvas. */
+    /** The active game canvas. */ //TODO: isn't window better?
     private Canvas activeGameCanvas;
     
     /** The active game frame. */
     private JFrame activeGameFrame;
     
+    /** The active graphics device. */
+    private GraphicsDevice activeGraphicsDevice;
+    
     /**
      * Instantiates a new screen manager.
      */
     public ScreenManager() {
-        this.setWindowFactory(new WindowFactory());
+        this.setWindowFactory(new WindowFactory())
+            .setActiveGraphicsDevice(
+                    this.getWindowFactory().getDefaultGraphicsDevice()
+            )
+        ;
     }
     
     /**
@@ -120,6 +128,21 @@ public class ScreenManager {
      */
     public ScreenManager setWindowFactory(WindowFactory windowFactory) {
         this.windowFactory = windowFactory;
+        return this;
+    }
+
+    /**
+     * @return the activeGraphicsDevice
+     */
+    public GraphicsDevice getActiveGraphicsDevice() {
+        return activeGraphicsDevice;
+    }
+
+    /**
+     * @param activeGraphicsDevice the activeGraphicsDevice to set
+     */
+    public ScreenManager setActiveGraphicsDevice(GraphicsDevice activeGraphicsDevice) {
+        this.activeGraphicsDevice = activeGraphicsDevice;
         return this;
     }
 

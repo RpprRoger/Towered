@@ -13,7 +13,7 @@ public abstract class AbstractBase {
     private SettingsFactory settingsFactory; //SettingsFactory
     private ExternalPipe externalPipe; //ExternalPipe
     private InternalPipe internalPipe; // InternalPipe
-    private Logger logger; // Logger
+    //private Logger logger; // Logger maybe just be static
     
     /**
      * Instantiates a new abstract base.
