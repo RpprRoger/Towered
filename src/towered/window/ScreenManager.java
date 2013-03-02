@@ -5,13 +5,15 @@
  */
 package towered.window;
 
-import java.awt.Canvas;
 import java.awt.GraphicsDevice;
+import java.awt.Window;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import towered.core.exceptions.CanvasNullException;
+import towered.core.exceptions.FrameNullException;
+import towered.core.exceptions.WindowNullException;
+import towered.core.workers.WindowFactory;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,11 +25,8 @@ import towered.core.exceptions.CanvasNullException;
  */
 public class ScreenManager {
     
-    /** The window factory. */
-    private WindowFactory windowFactory;
-    
     /** The active game canvas. */ //TODO: isn't window better?
-    private Canvas activeGameCanvas;
+    private Window activeGameWindow;
     
     /** The active game frame. */
     private JFrame activeGameFrame;
@@ -39,11 +38,9 @@ public class ScreenManager {
      * Instantiates a new screen manager.
      */
     public ScreenManager() {
-        this.setWindowFactory(new WindowFactory())
-            .setActiveGraphicsDevice(
-                    this.getWindowFactory().getDefaultGraphicsDevice()
-            )
-        ;
+        setActiveGraphicsDevice(
+                WindowFactory.getDefaultGraphicsDevice()
+        );
     }
     
     /**
@@ -51,6 +48,13 @@ public class ScreenManager {
      */
     public void update() {
         
+    }
+    
+    /**
+     * Centre active window.
+     */
+    public void centre() {
+        getActiveGameFrame().setLocationRelativeTo(null);
     }
     
     /**
@@ -70,13 +74,12 @@ public class ScreenManager {
      * Gets the active game canvas.
      *
      * @return the activeGameCanvas
-     * @throws CanvasNullException the canvas null exception
      */
-    public Canvas getActiveGameCanvas() {
-        if(this.activeGameCanvas != null) {
-            return activeGameCanvas;
+    public Window getActiveGameCanvas() {
+        if(this.activeGameWindow != null) {
+            return activeGameWindow;
         } else {
-            throw new CanvasNullException();
+            throw new WindowNullException();
         }
     }
     
@@ -86,8 +89,8 @@ public class ScreenManager {
      * @param activeGameCanvas the activeGameCanvas to set
      * @return the screen manager
      */
-    public ScreenManager setActiveGameCanvas(Canvas activeGameCanvas) {
-        this.activeGameCanvas = activeGameCanvas;
+    public ScreenManager setActiveGameCanvas(Window activeGameCanvas) {
+        this.activeGameWindow = activeGameCanvas;
         return this;
     }
 
@@ -97,7 +100,11 @@ public class ScreenManager {
      * @return the activeGameFrame
      */
     public JFrame getActiveGameFrame() {
-        return activeGameFrame;
+        if(this.activeGameFrame != null) {
+            return activeGameFrame;
+        } else {
+            throw new FrameNullException();
+        }
     }
 
     /**
@@ -110,28 +117,10 @@ public class ScreenManager {
         this.activeGameFrame = activeGameFrame;
         return this;
     }  
-
+    
     /**
-     * Gets the window factory.
+     * Gets the active graphics device.
      *
-     * @return the windowFactory
-     */
-    public WindowFactory getWindowFactory() {
-        return windowFactory;
-    }
-
-    /**
-     * Sets the window factory.
-     *
-     * @param windowFactory the windowFactory to set
-     * @return the screen manager
-     */
-    public ScreenManager setWindowFactory(WindowFactory windowFactory) {
-        this.windowFactory = windowFactory;
-        return this;
-    }
-
-    /**
      * @return the activeGraphicsDevice
      */
     public GraphicsDevice getActiveGraphicsDevice() {
@@ -139,7 +128,10 @@ public class ScreenManager {
     }
 
     /**
+     * Sets the active graphics device.
+     *
      * @param activeGraphicsDevice the activeGraphicsDevice to set
+     * @return the screen manager
      */
     public ScreenManager setActiveGraphicsDevice(GraphicsDevice activeGraphicsDevice) {
         this.activeGraphicsDevice = activeGraphicsDevice;

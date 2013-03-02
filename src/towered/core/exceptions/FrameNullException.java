@@ -1,19 +1,17 @@
 /**
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
- * @created 18 Feb 2013
+ * @created 2 Mar 2013
  * @project Towered
  */
-package towered.resources;
+package towered.core.exceptions;
 
 /**
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
  *
- * @created 18 Feb 2013
+ * @created 2 Mar 2013
  *
  * @project Towered
  */
-public class Resources {
-    
-    
-    
+public class FrameNullException extends RuntimeException {
+
 }

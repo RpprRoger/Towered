@@ -1,7 +1,7 @@
 package towered.core;
 
 import towered.core.services.Service;
-import towered.core.services.SettingsFactory;
+import towered.core.workers.SettingsFactory;
 
 /**
  * The Class Core.
@@ -25,6 +25,8 @@ public class Core extends AbstractBase {
      */
     public Core init() {
         this.settings = this.getSettingsFactory().getSettings();
+        // Do some foo 
+        // Launch window
         return this;
     }
     

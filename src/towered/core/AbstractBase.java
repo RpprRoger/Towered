@@ -2,7 +2,7 @@ package towered.core;
 
 import towered.core.services.ExternalPipe;
 import towered.core.services.InternalPipe;
-import towered.core.services.SettingsFactory;
+import towered.core.workers.SettingsFactory;
 
 /**
  * The Class AbstractBase.

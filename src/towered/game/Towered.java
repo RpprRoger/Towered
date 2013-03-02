@@ -14,7 +14,19 @@ import towered.core.Core;
  *
  * @project Towered
  */
-public class Towered extends Core {
+public class Towered extends Core implements Runnable {
+
+    public Towered() {
+        this.run();
+    }
+    
+    /**
+     * 
+     */
+    public void run() {
+        // TODO Auto-generated method stub
+        
+    }
     
     
     

@@ -1,7 +1,8 @@
-package towered.core.services;
+package towered.core.workers;
 
 import towered.core.Resolution;
 import towered.core.Settings;
+import towered.core.services.Service;
 
 /**
  * A factory for creating Settings objects.
@@ -13,17 +14,17 @@ public class SettingsFactory extends Service {
      *
      * @return the settings
      */
-    public Settings getSettings() {
+    public static Settings getSettings() {
         // Before we get and set in file system lets use a default.
 
-        return this.instantiateDefaultSettings();
+        return instantiateDefaultSettings();
     }
     
     /*
      * Private helper functions
      *====================================*/
     
-    private Settings instantiateDefaultSettings() {
+    private static Settings instantiateDefaultSettings() {
         Settings s = new Settings();
         
         s.setDifficulty(0.5)
@@ -31,7 +32,7 @@ public class SettingsFactory extends Service {
             .setJump(1) // Er space key? TODO: need to get the key numbers for keys..
             .setLeft(2) // left arrow
             .setRight(3) // right arrow
-            .setResolution(new Resolution(800,600));
+            .setResolution(new Resolution());
 
         return s;
     }
