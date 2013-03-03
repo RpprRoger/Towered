@@ -43,11 +43,15 @@ public class ScreenFactory {
         
         Window window = new Window(jframe);
         
-        jframe.setUndecorated(!fullscreen);
-        
         window.setFocusable(true);
         
         window.setIgnoreRepaint(true);
+        
+        window.setSize(jframe.getSize());
+        
+        window.setVisible(true);
+        
+        window.createBufferStrategy(2);
         
         return window;
     }
@@ -60,15 +64,14 @@ public class ScreenFactory {
      */
     public static JFrame getJFrame(String name, DisplayMode displayM) {
         
-        JFrame jframe = new JFrame(name);
+        JFrame jframe = new JFrame();
         
+        jframe.setTitle(name);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        jframe.setUndecorated(false);
         jframe.setResizable(false);
-        
+        jframe.setVisible(true);
         jframe.setSize(displayM.getWidth(), displayM.getHeight());
-        
-        jframe.setIgnoreRepaint(true);
         
         return jframe;
     }

@@ -5,6 +5,7 @@
  */
 package towered.core.services;
 
+import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.GraphicsDevice;
 import java.awt.Window;
@@ -12,7 +13,6 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import towered.core.Logger;
 import towered.core.Settings;
 import towered.core.exceptions.FrameNullException;
 import towered.core.exceptions.WindowNullException;
@@ -51,32 +51,22 @@ public class ScreenManager {
      *
      * @param settings the settings
      */
-    public void display(Settings settings) {
-        System.out.println("asd");
-    
-        Logger.info("We got here");
+    public ScreenManager init(Settings settings) {
         DisplayMode displayM = new DisplayMode(600, 600, 16, 60);
+        
         String name = Settings.WINDOW + " " + Settings.VERSION;        
         
         setActiveFrame(ScreenFactory.getJFrame(name, displayM));
         
-        setActiveWindow(ScreenFactory.getWindow(getActiveFrame(), settings.isFullscreen()));
+        setActiveWindow(
+            ScreenFactory.getWindow(getActiveFrame(), settings.isFullscreen())
+        );
         
-        getActiveFrame().setVisible(true);
-        getActiveWindow().setVisible(true);
+        getActiveWindow().setBackground(Color.green);
         
         centre();
-    }
-    
-    public boolean isNull() {
-        return activeGameFrame == null && activeGameWindow == null;
-    }
-    
-    /**
-     * Update.
-     */
-    public void update() {
         
+        return this;
     }
     
     /**

@@ -1,6 +1,7 @@
 package towered.core;
 
-import towered.core.services.Service;
+import java.awt.Color;
+
 import towered.core.workers.SettingsFactory;
 
 /**
@@ -39,7 +40,9 @@ public abstract class Core extends AbstractBase {
         
         setSettings(SettingsFactory.instantiateDefaultSettings());
         
-        getScreenManager().display(settings);
+        getScreenManager()
+            .init(settings)
+            .getActiveWindow().setBackground(new Color(255, 255, 255, 255));
         
         return this;
     }
@@ -47,6 +50,8 @@ public abstract class Core extends AbstractBase {
     public void gameLoop() {
         
         while(isRunning()) {
+            
+            
             
         }
         
