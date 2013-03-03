@@ -15,9 +15,10 @@ import towered.core.Core;
  * @project Towered
  */
 public class Towered extends Core implements Runnable {
-
+    
     public Towered() {
-        this.run();
+        init();
+        run();
     }
     
     /**
@@ -25,6 +26,10 @@ public class Towered extends Core implements Runnable {
      */
     public void run() {
         // TODO Auto-generated method stub
+        
+        start();
+        
+        gameLoop();
         
     }
     

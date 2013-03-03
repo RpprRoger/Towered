@@ -6,28 +6,50 @@ import towered.core.workers.SettingsFactory;
 /**
  * The Class Core.
  */
-public class Core extends AbstractBase {
+public abstract class Core extends AbstractBase {
 
     /** The settings. */
     private Settings settings;
     
+    private boolean running;
     
-    /**
-     * Instantiates a new core.
-     */
-    public Core() {
-        super();
-        init();
+    public Core start() {
+        running = true;
+        
+        return this;
+    }
+    
+    public Core exit() {
+        running = false;
+        
+        return this;
+    }
+    
+    public boolean isRunning() {
+        return running;
     }
     
     /**
      * 
      */
     public Core init() {
-        this.settings = this.getSettingsFactory().getSettings();
         // Do some foo 
         // Launch window
+        Logger.info("Game launched!");
+        
+        setSettings(SettingsFactory.instantiateDefaultSettings());
+        
+        getScreenManager().display(settings);
+        
         return this;
+    }
+    
+    public void gameLoop() {
+        
+        while(isRunning()) {
+            
+        }
+        
     }
     
     /**
@@ -37,5 +59,13 @@ public class Core extends AbstractBase {
      */
     public Settings getSettings() {
         return this.settings;
+    }
+
+    /**
+     * @param settings the settings to set
+     */
+    public Core setSettings(Settings settings) {
+        this.settings = settings;
+        return this;
     }
 }

@@ -12,9 +12,6 @@ import java.awt.Window;
 
 import javax.swing.JFrame;
 
-import towered.core.Resolution;
-import towered.core.Settings;
-
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating Window objects.
@@ -23,7 +20,7 @@ import towered.core.Settings;
  * @created 18 Feb 2013
  * @project Towered
  */
-public class WindowFactory {
+public class ScreenFactory {
     
     /**
      * Gets the default graphics device.
@@ -37,43 +34,22 @@ public class WindowFactory {
     }
     
     /**
-     * Generate a window using.
-     *
-     * @param settings object to create the window from.
-     * @param jframe the jframe
-     * @return the window
-     */
-    public static Window getWindow(Settings settings, JFrame jframe) {
-        Window window;
-        
-        if(settings.isFullscreen()) {
-            window = getFullscreenWindow(settings.getResolution());
-        } else {
-            window = getWindow(settings.getResolution());
-        }
-        
-        return window;
-    }
-    
-    /**
      * Gets the window.
      *
      * @param res the res
      * @return the window
      */
-    public static Window getWindow(Resolution res) {
+    public static Window getWindow(JFrame jframe, boolean fullscreen) {
         
-        return new Window(new JFrame());
-    }
-    
-    /**
-     * Gets the fullscreen window.
-     *
-     * @param res the res
-     * @return the fullscreen window
-     */
-    public static Window getFullscreenWindow(Resolution res) {
-        return new Window(new JFrame());
+        Window window = new Window(jframe);
+        
+        jframe.setUndecorated(!fullscreen);
+        
+        window.setFocusable(true);
+        
+        window.setIgnoreRepaint(true);
+        
+        return window;
     }
     
     /**
@@ -82,9 +58,19 @@ public class WindowFactory {
      * @param settings the settings
      * @return the frame
      */
-    public static JFrame getJFrame(Settings settings) {
+    public static JFrame getJFrame(String name, DisplayMode displayM) {
         
-        return new JFrame();
+        JFrame jframe = new JFrame(name);
+        
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        jframe.setResizable(false);
+        
+        jframe.setSize(displayM.getWidth(), displayM.getHeight());
+        
+        jframe.setIgnoreRepaint(true);
+        
+        return jframe;
     }
     
     public static DisplayMode[] getSupportedDisplayModes(GraphicsDevice graphicsD) {

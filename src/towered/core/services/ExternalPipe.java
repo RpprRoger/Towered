@@ -12,36 +12,6 @@ public class ExternalPipe extends Service {
     public ExternalPipe() {}
     
     /**
-     * Append to file.
-     *
-     * @param fileName the file name
-     * @param message the message
-     * @return true, if successful
-     */
-    public static boolean appendToFile(String fileName, String message) {
-        FileWriter output = null;
-        try {
-            output = new FileWriter(fileName, true);
-            BufferedWriter writer = new BufferedWriter(output);
-            writer.write(message);
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (output != null) {
-                try {
-                    output.close();
-                    return true;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return false;
-    }
-    
-    /**
      * This method reads a text file line by line and returns the string.
      *
      * @param fileName the file name
@@ -106,5 +76,37 @@ public class ExternalPipe extends Service {
         }
         return false;
     }
+    
+    /* Static output methods */
 
+    /**
+     * Append to file.
+     *
+     * @param fileName the file name
+     * @param message the message
+     * @return true, if successful
+     */
+    public static boolean appendToFile(String fileName, String message) {
+        FileWriter output = null;
+        try {
+            output = new FileWriter(fileName, true);
+            BufferedWriter writer = new BufferedWriter(output);
+            writer.write(message);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                    return true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
+    
 }

@@ -2,6 +2,7 @@ package towered.core;
 
 import towered.core.services.ExternalPipe;
 import towered.core.services.InternalPipe;
+import towered.core.services.ScreenManager;
 import towered.core.workers.SettingsFactory;
 
 /**
@@ -10,9 +11,9 @@ import towered.core.workers.SettingsFactory;
 public abstract class AbstractBase {
     
     /** The services. */
-    private SettingsFactory settingsFactory; //SettingsFactory
     private ExternalPipe externalPipe; //ExternalPipe
     private InternalPipe internalPipe; // InternalPipe
+    private ScreenManager screenManager;
     //private Logger logger; // Logger maybe just be static
     
     /**
@@ -21,25 +22,7 @@ public abstract class AbstractBase {
     public AbstractBase() {
         this.setExternalPipe(new ExternalPipe())
             .setInternalPipe(new InternalPipe())
-            .setSettingsFactory(new SettingsFactory());
-    }
-
-    /**
-     * @return the settingsFactory
-     */
-    public SettingsFactory getSettingsFactory() {
-        return settingsFactory;
-    }
-
-    /**
-     * Sets the settings factory.
-     *
-     * @param settingsFactory the settingsFactory to set
-     * @return the abstract base
-     */
-    public AbstractBase setSettingsFactory(SettingsFactory settingsFactory) {
-        this.settingsFactory = settingsFactory;
-        return this;
+            .setScreenManager(new ScreenManager());
     }
 
     /**
@@ -69,6 +52,21 @@ public abstract class AbstractBase {
      */
     public AbstractBase setInternalPipe(InternalPipe internalPipe) {
         this.internalPipe = internalPipe;
+        return this;
+    }
+
+    /**
+     * @return the screenManager
+     */
+    public ScreenManager getScreenManager() {
+        return screenManager;
+    }
+
+    /**
+     * @param screenManager the screenManager to set
+     */
+    public AbstractBase setScreenManager(ScreenManager screenManager) {
+        this.screenManager = screenManager;
         return this;
     }
 }

@@ -15,8 +15,11 @@ public class Settings {
     /** The window. */
     public static final String WINDOW = "Towered";
     
+    /** The debug. */
+    public static boolean DEBUG = true;
+    
     /** The resolution. */
-    private Resolution resolution;
+    private int resolution;
     
     /** Keys used for re-bindings */
     private int jump,
@@ -44,7 +47,7 @@ public class Settings {
      * @param r the r
      * @return this
      */
-    public Settings setResolution(Resolution r) {
+    public Settings setResolution(int r) {
         this.resolution = r;
         
         return this;
@@ -55,7 +58,7 @@ public class Settings {
      *
      * @return Resolution
      */
-    public Resolution getResolution() {
+    public int getResolution() {
         return this.resolution;
     }
     

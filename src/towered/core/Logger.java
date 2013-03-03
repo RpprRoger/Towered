@@ -20,9 +20,7 @@ import towered.core.services.Service;
  */
 public class Logger extends Service {
     
-    private static String logFile = getJarDir() + Settings.WINDOW + "_" + Settings.VERSION + ".log";
-    
-    
+    private static String logFile = getJarDir() + "/" + Settings.WINDOW + "_" + Settings.VERSION + ".log";
     
     /**
      * Instantiates a new logger.
@@ -55,7 +53,7 @@ public class Logger extends Service {
      */
     public static String log(String message, String level) {
         String msg = String.format(
-                "[ %1 %2 %3 ]<%4>: %5", 
+                "[ %s %s %s ]<%s>: %s", 
                 Settings.WINDOW, 
                 getDate(),
                 getTime(),
@@ -63,7 +61,8 @@ public class Logger extends Service {
                 message)
         ;
         
-        logToFile(msg);
+        if(Settings.DEBUG)
+            logToFile(msg);
         
         return msg;
     }

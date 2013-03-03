@@ -3,17 +3,20 @@
  * @created 27 Feb 2013
  * @project Towered
  */
-package towered.window;
+package towered.core.services;
 
+import java.awt.DisplayMode;
 import java.awt.GraphicsDevice;
 import java.awt.Window;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import towered.core.Logger;
+import towered.core.Settings;
 import towered.core.exceptions.FrameNullException;
 import towered.core.exceptions.WindowNullException;
-import towered.core.workers.WindowFactory;
+import towered.core.workers.ScreenFactory;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -25,7 +28,7 @@ import towered.core.workers.WindowFactory;
  */
 public class ScreenManager {
     
-    /** The active game canvas. */ //TODO: isn't window better?
+    /** The active game Window. */
     private Window activeGameWindow;
     
     /** The active game frame. */
@@ -39,8 +42,34 @@ public class ScreenManager {
      */
     public ScreenManager() {
         setActiveGraphicsDevice(
-                WindowFactory.getDefaultGraphicsDevice()
+                ScreenFactory.getDefaultGraphicsDevice()
         );
+    }
+    
+    /**
+     * Display.
+     *
+     * @param settings the settings
+     */
+    public void display(Settings settings) {
+        System.out.println("asd");
+    
+        Logger.info("We got here");
+        DisplayMode displayM = new DisplayMode(600, 600, 16, 60);
+        String name = Settings.WINDOW + " " + Settings.VERSION;        
+        
+        setActiveFrame(ScreenFactory.getJFrame(name, displayM));
+        
+        setActiveWindow(ScreenFactory.getWindow(getActiveFrame(), settings.isFullscreen()));
+        
+        getActiveFrame().setVisible(true);
+        getActiveWindow().setVisible(true);
+        
+        centre();
+    }
+    
+    public boolean isNull() {
+        return activeGameFrame == null && activeGameWindow == null;
     }
     
     /**
@@ -54,7 +83,7 @@ public class ScreenManager {
      * Centre active window.
      */
     public void centre() {
-        getActiveGameFrame().setLocationRelativeTo(null);
+        getActiveFrame().setLocationRelativeTo(null);
     }
     
     /**
@@ -63,9 +92,7 @@ public class ScreenManager {
      * @return the buffer strategy
      */
     public BufferStrategy getBufferStrategy() {
-        
-        
-        return null;
+        return getActiveWindow().getBufferStrategy();
     }
     
     /* getters and setters */
@@ -75,7 +102,7 @@ public class ScreenManager {
      *
      * @return the activeGameCanvas
      */
-    public Window getActiveGameCanvas() {
+    public Window getActiveWindow() {
         if(this.activeGameWindow != null) {
             return activeGameWindow;
         } else {
@@ -89,7 +116,7 @@ public class ScreenManager {
      * @param activeGameCanvas the activeGameCanvas to set
      * @return the screen manager
      */
-    public ScreenManager setActiveGameCanvas(Window activeGameCanvas) {
+    public ScreenManager setActiveWindow(Window activeGameCanvas) {
         this.activeGameWindow = activeGameCanvas;
         return this;
     }
@@ -99,7 +126,7 @@ public class ScreenManager {
      *
      * @return the activeGameFrame
      */
-    public JFrame getActiveGameFrame() {
+    public JFrame getActiveFrame() {
         if(this.activeGameFrame != null) {
             return activeGameFrame;
         } else {
@@ -113,7 +140,7 @@ public class ScreenManager {
      * @param activeGameFrame the activeGameFrame to set
      * @return the screen manager
      */
-    public ScreenManager setActiveGameFrame(JFrame activeGameFrame) {
+    public ScreenManager setActiveFrame(JFrame activeGameFrame) {
         this.activeGameFrame = activeGameFrame;
         return this;
     }  
