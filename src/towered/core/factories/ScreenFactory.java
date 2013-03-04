@@ -56,14 +56,9 @@ public class ScreenFactory {
         jframe.setVisible(true);
         jframe.setSize(displayM.getWidth(), displayM.getHeight());
         jframe.createBufferStrategy(2);
+        jframe.setIgnoreRepaint(true);
         
         return jframe;
-    }
-    
-    public static int getTop(JFrame jframe) {
-        Insets insets = jframe.getInsets();
-        
-        return insets.top;
     }
     
     /**

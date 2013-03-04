@@ -5,7 +5,11 @@
  */
 package towered.game;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import towered.core.Core;
+import towered.core.Logger;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,15 +21,45 @@ import towered.core.Core;
  */
 public class Towered extends Core implements Runnable {
     
+    
+    
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
      */
     public void run() {
         // TODO Auto-generated method stub
         
-        start();
+        try {
+            
+            init();
+            
+            start();
+            
+            gameLoop();
+            
+        } finally {
+            Logger.info("Game closed!");
+        }
         
-        gameLoop();
+    }
+
+    /* (non-Javadoc)
+     * @see towered.core.Core#update(long)
+     */
+    @Override
+    public synchronized void update(double timePassed) {
+        // TODO Auto-generated method stub
         
-    }    
+    }
+
+    /* (non-Javadoc)
+     * @see towered.core.Core#draw(java.awt.Graphics2D)
+     */
+    @Override
+    public synchronized void draw(Graphics2D g) {
+        // TODO Auto-generated method stub
+        g.setColor(Color.red);
+        g.drawString("hello world", 50, 50);
+        g.fillRect(0, 0, 600, 600);
+    }
 }
