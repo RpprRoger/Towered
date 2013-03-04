@@ -3,25 +3,22 @@
  */
 package towered.core;
 
+import java.awt.DisplayMode;
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Settings.
  */
-public class Settings {
+public class Settings implements Serializable {
     
-    /** The version. */
-    public static final String VERSION = "v0.1";
-    
-    /** The window. */
-    public static final String WINDOW = "Towered";
-    
-    /** The debug. */
-    public static boolean DEBUG = true;
-    
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 4664286911493991225L;
+
     /** The resolution. */
-    private int resolution;
+    private DisplayMode resolution;
     
-    /** Keys used for re-bindings */
+    /** Keys used for re-bindings. */
     private int jump,
                 left,
                 right;
@@ -47,7 +44,7 @@ public class Settings {
      * @param r the r
      * @return this
      */
-    public Settings setResolution(int r) {
+    public Settings setResolution(DisplayMode r) {
         this.resolution = r;
         
         return this;
@@ -58,7 +55,7 @@ public class Settings {
      *
      * @return Resolution
      */
-    public int getResolution() {
+    public DisplayMode getResolution() {
         return this.resolution;
     }
     
@@ -126,6 +123,8 @@ public class Settings {
     }
 
     /**
+     * Gets the difficulty.
+     *
      * @return the difficulty
      */
     public double getDifficulty() {
@@ -133,7 +132,10 @@ public class Settings {
     }
 
     /**
+     * Sets the difficulty.
+     *
      * @param difficulty the difficulty to set
+     * @return the settings
      */
     public Settings setDifficulty(double difficulty) {
         this.difficulty = difficulty;
@@ -141,6 +143,8 @@ public class Settings {
     }
     
     /**
+     * Checks if is fullscreen.
+     *
      * @return the fullscreen
      */
     public boolean isFullscreen() {
@@ -148,7 +152,10 @@ public class Settings {
     }
 
     /**
+     * Sets the fullscreen.
+     *
      * @param fullscreen the fullscreen to set
+     * @return the settings
      */
     public Settings setFullscreen(boolean fullscreen) {
         this.fullscreen = fullscreen;

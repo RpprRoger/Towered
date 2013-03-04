@@ -9,27 +9,24 @@ do a refresh on the project, don't forget!
 
     - towered
         * Main.java
-            | This file will instantiate 
-            |
         - core
             * AbstractBase.java
             * Core.java
-            * Resolution.java
+            * Logger.java
             * Settings.java
             - exceptions
-            - services
-                * ExternalPipe.java
-                * InternalPipe.java
-                * Logger.java
-                * Service.java
+                * ContentLostException.java
+                * FrameIsNullException.java
+                * NoSupportedGraphicsModesException.java
+            - factories
+                * ScreenFactory.java
                 * SettingsFactory.java
         - game
             * Towered.java
-            ? this should contain some sort of game screen logger
+            - engine
+            - modes
+                * GameMode.java
+                * Overworld.java
         - resources
-            * Resources.java
-        - window
-            * Canvas.java
-            * Frame.java
-            * GameWindow.java
-            * WindowFactory.java
+            Resources.java
+        -window // Possibly redundant

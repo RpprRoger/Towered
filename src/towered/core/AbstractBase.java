@@ -1,9 +1,9 @@
 package towered.core;
 
+import towered.core.factories.SettingsFactory;
 import towered.core.services.ExternalPipe;
 import towered.core.services.InternalPipe;
 import towered.core.services.ScreenManager;
-import towered.core.workers.SettingsFactory;
 
 /**
  * The Class AbstractBase.

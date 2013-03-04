@@ -8,28 +8,25 @@ package towered.core;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import towered.Main;
 import towered.core.services.ExternalPipe;
-import towered.core.services.Service;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class Logger.
+ *
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
- *
  * @created 25 Feb 2013
- *
  * @project Towered
  */
-public class Logger extends Service {
+public class Logger {
     
-    private static String logFile = getJarDir() + "/" + Settings.WINDOW + "_" + Settings.VERSION + ".log";
+    /** The log file. */
+    private static String logFile = ExternalPipe.getJarDir() + "/" + Main.WINDOW + "_" + Main.VERSION + ".log";
     
     /**
-     * Instantiates a new logger.
+     * Log a string to the default logging directory.
      *
-     */
-    public Logger() {}
-    
-    /**
-     * Log a string to the default logging directory
      * @param message to append to the file
      * @return boolean
      */
@@ -38,30 +35,23 @@ public class Logger extends Service {
     }
     
     /**
-     * Log an array to the default logging directory
-     * @param message to append to the file
-     * @return boolean
-     */
-    public static boolean logToFile(Object[] array) {
-        return ExternalPipe.appendToFile(logFile, array.toString());
-    }
-    
-    /**
      * Log an Info level log.
      *
      * @param message the message
+     * @param level the level
+     * @return the string
      */
     public static String log(String message, String level) {
         String msg = String.format(
                 "[ %s %s %s ]<%s>: %s", 
-                Settings.WINDOW, 
+                Main.WINDOW, 
                 getDate(),
                 getTime(),
                 level,
                 message)
         ;
         
-        if(Settings.DEBUG)
+        if(Main.DEBUG)
             logToFile(msg);
         
         return msg;
@@ -74,7 +64,16 @@ public class Logger extends Service {
     public static void info(String message) {
         System.out.println(log(message, "INFO"));
     }
-    
+
+    /**
+     * Info.
+     *
+     * @param message the message
+     */
+    public static void info(boolean message) {
+        info(message ? "true" : "false");
+    }
+        
     /**
      * Print to the console.
      * @param message to print
@@ -98,7 +97,8 @@ public class Logger extends Service {
     }
     
     /**
-     * Get the current time formatted in HH:mm:ss
+     * Get the current time formatted in HH:mm:ss.
+     *
      * @return The formatted String
      */
     private static String getTime() {
@@ -107,5 +107,5 @@ public class Logger extends Service {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(cal.getTime());
     }
-    
+
 }

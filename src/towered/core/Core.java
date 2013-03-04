@@ -1,8 +1,8 @@
 package towered.core;
 
-import java.awt.Color;
+import java.awt.Rectangle;
 
-import towered.core.workers.SettingsFactory;
+import towered.core.factories.SettingsFactory;
 
 /**
  * The Class Core.
@@ -40,9 +40,7 @@ public abstract class Core extends AbstractBase {
         
         setSettings(SettingsFactory.instantiateDefaultSettings());
         
-        getScreenManager()
-            .init(settings)
-            .getActiveWindow().setBackground(new Color(255, 255, 255, 255));
+        getScreenManager().init(settings);
         
         return this;
     }
@@ -52,6 +50,7 @@ public abstract class Core extends AbstractBase {
         while(isRunning()) {
             
             
+            getScreenManager().getGraphics().draw(new Rectangle(0, 0, 600, 600));
             
         }
         

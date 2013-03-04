@@ -5,18 +5,18 @@
  */
 package towered.core.services;
 
-import java.awt.Color;
 import java.awt.DisplayMode;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
-import java.awt.Window;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import towered.Main;
 import towered.core.Settings;
-import towered.core.exceptions.FrameNullException;
-import towered.core.exceptions.WindowNullException;
-import towered.core.workers.ScreenFactory;
+import towered.core.exceptions.ContentsLostException;
+import towered.core.exceptions.FrameIsNullException;
+import towered.core.factories.ScreenFactory;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -27,9 +27,6 @@ import towered.core.workers.ScreenFactory;
  * @project Towered
  */
 public class ScreenManager {
-    
-    /** The active game Window. */
-    private Window activeGameWindow;
     
     /** The active game frame. */
     private JFrame activeGameFrame;
@@ -50,19 +47,14 @@ public class ScreenManager {
      * Display.
      *
      * @param settings the settings
+     * @return the screen manager
      */
     public ScreenManager init(Settings settings) {
         DisplayMode displayM = new DisplayMode(600, 600, 16, 60);
         
-        String name = Settings.WINDOW + " " + Settings.VERSION;        
+        String name = Main.WINDOW + " " + Main.VERSION;        
         
         setActiveFrame(ScreenFactory.getJFrame(name, displayM));
-        
-        setActiveWindow(
-            ScreenFactory.getWindow(getActiveFrame(), settings.isFullscreen())
-        );
-        
-        getActiveWindow().setBackground(Color.green);
         
         centre();
         
@@ -77,40 +69,44 @@ public class ScreenManager {
     }
     
     /**
-     * Gets the buffer strategy.
-     *
-     * @return the buffer strategy
+     * Update.
      */
-    public BufferStrategy getBufferStrategy() {
-        return getActiveWindow().getBufferStrategy();
+    public void update() {
+        if(!getBufferStrategy().contentsLost()) {
+            getBufferStrategy().show();
+        } else {
+            throw new ContentsLostException();
+        }
+    }
+    
+    /**
+     * Gets the graphics.
+     *
+     * @return the graphics
+     */
+    public Graphics2D getGraphics() {
+        return (Graphics2D)getBufferStrategy().getDrawGraphics();
+    }
+    
+    public void fullscreen() {
+        getActiveGraphicsDevice().setFullScreenWindow(getActiveFrame());
+    }
+    
+    public void windowed() {
+        getActiveGraphicsDevice().setFullScreenWindow(null);
     }
     
     /* getters and setters */
     
     /**
-     * Gets the active game canvas.
+     * Gets the buffer strategy.
      *
-     * @return the activeGameCanvas
+     * @return the buffer strategy
      */
-    public Window getActiveWindow() {
-        if(this.activeGameWindow != null) {
-            return activeGameWindow;
-        } else {
-            throw new WindowNullException();
-        }
+    public BufferStrategy getBufferStrategy() {
+        return getActiveFrame().getBufferStrategy();
     }
     
-    /**
-     * Sets the active game canvas.
-     *
-     * @param activeGameCanvas the activeGameCanvas to set
-     * @return the screen manager
-     */
-    public ScreenManager setActiveWindow(Window activeGameCanvas) {
-        this.activeGameWindow = activeGameCanvas;
-        return this;
-    }
-
     /**
      * Gets the active game frame.
      *
@@ -120,7 +116,7 @@ public class ScreenManager {
         if(this.activeGameFrame != null) {
             return activeGameFrame;
         } else {
-            throw new FrameNullException();
+            throw new FrameIsNullException();
         }
     }
 

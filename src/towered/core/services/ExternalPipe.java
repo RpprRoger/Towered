@@ -7,7 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ExternalPipe extends Service {
+import towered.Main;
+
+public class ExternalPipe {
+    
+    /** The Constant JAR_FILE. */
+    private final static String JAR_FILE = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
     
     public ExternalPipe() {}
     
@@ -107,6 +112,25 @@ public class ExternalPipe extends Service {
             }
         }
         return false;
+    }
+    
+    /**
+     * Get the jar file path
+     * @return the path
+     */
+    public static String getJarFile() {
+        return JAR_FILE;
+    }
+    
+    /**
+     * Gets the jar dir.
+     *
+     * @return the jar dir
+     */
+    public static String getJarDir() {
+        int i = getJarFile().lastIndexOf('/');
+        String dir = JAR_FILE.substring(0, i);
+        return dir;
     }
     
 }
