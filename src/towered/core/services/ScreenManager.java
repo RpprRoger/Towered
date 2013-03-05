@@ -5,10 +5,10 @@
  */
 package towered.core.services;
 
-import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -42,6 +42,13 @@ public class ScreenManager {
         setActiveGraphicsDevice(
                 ScreenFactory.getDefaultGraphicsDevice()
         );
+    }
+    
+    public ScreenManager addKeyListener(KeyListener keyListener) {
+        
+        getActiveFrame().addKeyListener(keyListener);
+        
+        return this;
     }
     
     /**

@@ -5,11 +5,9 @@
  */
 package towered.core.factories;
 
-import java.awt.Dimension;
 import java.awt.DisplayMode;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Insets;
 
 import javax.swing.JFrame;
 
@@ -42,7 +40,7 @@ public class ScreenFactory {
      * Gets the frame.
      *
      * @param name the name
-     * @param displayM the display m
+     * @param displayM the display mode
      * @return the frame
      */
     public static JFrame getJFrame(String name, DisplayMode displayM) {
@@ -53,10 +51,11 @@ public class ScreenFactory {
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setUndecorated(false);
         jframe.setResizable(false);
-        jframe.setVisible(true);
-        jframe.setSize(displayM.getWidth(), displayM.getHeight());
-        jframe.createBufferStrategy(2);
         jframe.setIgnoreRepaint(true);
+        jframe.setSize(displayM.getWidth(), displayM.getHeight());
+        jframe.setFocusable(true);
+        jframe.setVisible(true);
+        jframe.createBufferStrategy(2);
         
         return jframe;
     }

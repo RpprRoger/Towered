@@ -21,7 +21,12 @@ import towered.core.Logger;
  */
 public class Towered extends Core implements Runnable {
     
-    
+    public Core init() {
+        
+        
+        
+        return super.init();
+    }
     
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
@@ -47,9 +52,8 @@ public class Towered extends Core implements Runnable {
      * @see towered.core.Core#update(long)
      */
     @Override
-    public synchronized void update(double timePassed) {
+    public synchronized void update(double delta) {
         // TODO Auto-generated method stub
-        
     }
 
     /* (non-Javadoc)

@@ -14,8 +14,10 @@ import java.awt.Graphics2D;
  *
  * @project Towered
  */
-public interface RenderableEntity {
+public interface Entity {
     
     public void draw(Graphics2D d);
+    
+    public void update(double delta);
 
 }

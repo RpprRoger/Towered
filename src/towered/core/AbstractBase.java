@@ -1,10 +1,10 @@
 package towered.core;
 
-import towered.core.factories.SettingsFactory;
 import towered.core.services.ExternalPipe;
 import towered.core.services.InternalPipe;
 import towered.core.services.ScreenManager;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractBase.
  */
@@ -12,7 +12,11 @@ public abstract class AbstractBase {
     
     /** The services. */
     private ExternalPipe externalPipe; //ExternalPipe
+    
+    /** The internal pipe. */
     private InternalPipe internalPipe; // InternalPipe
+    
+    /** The screen manager. */
     private ScreenManager screenManager;
     //private Logger logger; // Logger maybe just be static
     
@@ -26,6 +30,8 @@ public abstract class AbstractBase {
     }
 
     /**
+     * Gets the external pipe.
+     *
      * @return the externalPipe
      */
     public ExternalPipe getExternalPipe() {
@@ -33,7 +39,10 @@ public abstract class AbstractBase {
     }
 
     /**
+     * Sets the external pipe.
+     *
      * @param externalPipe the externalPipe to set
+     * @return the abstract base
      */
     public AbstractBase setExternalPipe(ExternalPipe externalPipe) {
         this.externalPipe = externalPipe;
@@ -41,6 +50,8 @@ public abstract class AbstractBase {
     }
 
     /**
+     * Gets the internal pipe.
+     *
      * @return the internalPipe
      */
     public InternalPipe getInternalPipe() {
@@ -48,7 +59,10 @@ public abstract class AbstractBase {
     }
 
     /**
+     * Sets the internal pipe.
+     *
      * @param internalPipe the internalPipe to set
+     * @return the abstract base
      */
     public AbstractBase setInternalPipe(InternalPipe internalPipe) {
         this.internalPipe = internalPipe;
@@ -56,6 +70,8 @@ public abstract class AbstractBase {
     }
 
     /**
+     * Gets the screen manager.
+     *
      * @return the screenManager
      */
     public ScreenManager getScreenManager() {
@@ -63,7 +79,10 @@ public abstract class AbstractBase {
     }
 
     /**
+     * Sets the screen manager.
+     *
      * @param screenManager the screenManager to set
+     * @return the abstract base
      */
     public AbstractBase setScreenManager(ScreenManager screenManager) {
         this.screenManager = screenManager;

@@ -1,6 +1,7 @@
 package towered.core.factories;
 
 import java.awt.DisplayMode;
+import java.util.HashMap;
 
 import towered.core.Settings;
 
@@ -34,9 +35,34 @@ public class SettingsFactory {
         return s;        
     }
     
-    /*
-     * Private helper functions
-     *====================================*/
+    public static String serialize(Settings settings) {
+        
+        return "";
+    }
+    
+    public HashMap<String, String> toArray(Settings settings) {
+        HashMap<String, String> settingsMap = new HashMap<String, String>();
+        
+        settingsMap.put("", "");
+        
+        return settingsMap;
+    }
+    
+    public String toString(DisplayMode subject) {        
+        return String.format(
+                "%sx%s@%s:%s",
+                subject.getWidth(),
+                subject.getHeight(),
+                subject.getRefreshRate(),
+                subject.getBitDepth()
+        );
+    }
+    
+    public DisplayMode displayModeFromString(String subject) {
+        if()        
+        
+        return new DisplayMode(0, 0, 0, 0);
+    }
     
     /**
      * Instantiate default settings.
