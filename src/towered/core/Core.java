@@ -19,9 +19,6 @@ public abstract class Core extends AbstractBase {
         ONE_SECOND  = 1000000000,
         ONE_MSECOND = 1000000;
 
-    /** The settings. */
-    private Settings settings;
-
     /** The running. */
     private boolean running;
 
@@ -64,14 +61,11 @@ public abstract class Core extends AbstractBase {
     public Core init() {
         Logger.info("Game launched!");
 
-        // Get settings from disk, or create default and save to disk
-        setSettings(SettingsFactory.instantiateDefaultSettings());
-
         // Get a hashmap of resources from towered.resources.*
         // Foo
 
         // Launch screen
-        getScreenManager().init(settings);
+        getScreenManager().init(getSettingsManager().get);
 
         return this;
     }
@@ -141,37 +135,14 @@ public abstract class Core extends AbstractBase {
     /**
      * Update.
      * 
-     * @param delta
-     *            the delta
+     * @param delta the delta
      */
     public abstract void update(double delta);
 
     /**
      * Draw.
      * 
-     * @param g
-     *            the g
+     * @param g the g
      */
     public abstract void draw(Graphics2D g);
-
-    /**
-     * Gets the settings.
-     * 
-     * @return the settings
-     */
-    public Settings getSettings() {
-        return this.settings;
-    }
-
-    /**
-     * Sets the settings.
-     * 
-     * @param settings
-     *            the settings to set
-     * @return the core
-     */
-    public Core setSettings(Settings settings) {
-        this.settings = settings;
-        return this;
-    }
 }

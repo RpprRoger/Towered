@@ -48,7 +48,7 @@ public class SettingsFactory {
         return settingsMap;
     }
     
-    public String toString(DisplayMode subject) {        
+    public String toString(DisplayMode subject) {
         return String.format(
                 "%sx%s@%s:%s",
                 subject.getWidth(),
@@ -59,7 +59,9 @@ public class SettingsFactory {
     }
     
     public DisplayMode displayModeFromString(String subject) {
-        if()        
+        if(subject.matches("[0-9].?x[0-9].?@[0-9].?:[0-9].?")) {
+            
+        }        
         
         return new DisplayMode(0, 0, 0, 0);
     }

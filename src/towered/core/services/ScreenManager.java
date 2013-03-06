@@ -44,6 +44,12 @@ public class ScreenManager {
         );
     }
     
+    /**
+     * Adds the key listener.
+     *
+     * @param keyListener the key listener
+     * @return the screen manager
+     */
     public ScreenManager addKeyListener(KeyListener keyListener) {
         
         getActiveFrame().addKeyListener(keyListener);
@@ -57,8 +63,7 @@ public class ScreenManager {
      * @param settings the settings
      * @return the screen manager
      */
-    public ScreenManager init(Settings settings) {
-        DisplayMode displayM = new DisplayMode(600, 600, 16, 60);
+    public ScreenManager init(DisplayMode displayM) {
         
         String name = Main.WINDOW + " " + Main.VERSION;        
         
@@ -96,10 +101,16 @@ public class ScreenManager {
         return (Graphics2D)getBufferStrategy().getDrawGraphics();
     }
     
+    /**
+     * Fullscreen.
+     */
     public void fullscreen() {
         getActiveGraphicsDevice().setFullScreenWindow(getActiveFrame());
     }
     
+    /**
+     * Windowed.
+     */
     public void windowed() {
         getActiveGraphicsDevice().setFullScreenWindow(null);
     }

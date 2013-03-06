@@ -3,6 +3,7 @@ package towered.core;
 import towered.core.services.ExternalPipe;
 import towered.core.services.InternalPipe;
 import towered.core.services.ScreenManager;
+import towered.core.services.SettingsManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -10,7 +11,9 @@ import towered.core.services.ScreenManager;
  */
 public abstract class AbstractBase {
     
-    /** The services. */
+    /** Services. */
+    
+    /** External pipe */
     private ExternalPipe externalPipe; //ExternalPipe
     
     /** The internal pipe. */
@@ -18,6 +21,10 @@ public abstract class AbstractBase {
     
     /** The screen manager. */
     private ScreenManager screenManager;
+    
+    /** The settings manager. */
+    private SettingsManager settingsManager;
+    
     //private Logger logger; // Logger maybe just be static
     
     /**
@@ -86,6 +93,21 @@ public abstract class AbstractBase {
      */
     public AbstractBase setScreenManager(ScreenManager screenManager) {
         this.screenManager = screenManager;
+        return this;
+    }
+
+    /**
+     * @return the settingsManager
+     */
+    public SettingsManager getSettingsManager() {
+        return settingsManager;
+    }
+
+    /**
+     * @param settingsManager the settingsManager to set
+     */
+    public AbstractBase setSettingsManager(SettingsManager settingsManager) {
+        this.settingsManager = settingsManager;
         return this;
     }
 }

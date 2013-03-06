@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import towered.Main;
-import towered.core.services.ExternalPipe;
+import towered.core.factories.UtilFactory;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -22,7 +22,7 @@ import towered.core.services.ExternalPipe;
 public class Logger {
     
     /** The log file. */
-    private static String logFile = ExternalPipe.getJarDir() + "/" + Main.WINDOW + "_" + Main.VERSION + ".log";
+    private static String logFile = UtilFactory.getJarDir() + "/" + Main.WINDOW + "_" + Main.VERSION + ".log";
     
     /**
      * Log a string to the default logging directory.
@@ -31,7 +31,7 @@ public class Logger {
      * @return boolean
      */
     public static boolean logToFile(String message) {
-        return ExternalPipe.appendToFile(logFile, message);
+        return UtilFactory.appendToFile(logFile, message);
     }
     
     /**

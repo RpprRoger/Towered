@@ -7,12 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import towered.Main;
-
 public class ExternalPipe {
-    
-    /** The Constant JAR_FILE. */
-    private final static String JAR_FILE = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
     
     public ExternalPipe() {}
     
@@ -80,57 +75,6 @@ public class ExternalPipe {
             }
         }
         return false;
-    }
-    
-    /* Static output methods */
-
-    /**
-     * Append to file.
-     *
-     * @param fileName the file name
-     * @param message the message
-     * @return true, if successful
-     */
-    public static boolean appendToFile(String fileName, String message) {
-        FileWriter output = null;
-        try {
-            output = new FileWriter(fileName, true);
-            BufferedWriter writer = new BufferedWriter(output);
-            writer.write(message);
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (output != null) {
-                try {
-                    output.close();
-                    return true;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Get the jar file path
-     * @return the path
-     */
-    public static String getJarFile() {
-        return JAR_FILE;
-    }
-    
-    /**
-     * Gets the jar dir.
-     *
-     * @return the jar dir
-     */
-    public static String getJarDir() {
-        int i = getJarFile().lastIndexOf('/');
-        String dir = JAR_FILE.substring(0, i);
-        return dir;
     }
     
 }
