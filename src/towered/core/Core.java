@@ -2,14 +2,13 @@ package towered.core;
 
 import java.awt.Graphics2D;
 
-import towered.core.factories.SettingsFactory;
-import towered.core.services.ScreenManager;
+import towered.core.services.Services;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Core.
  */
-public abstract class Core extends AbstractBase {
+public abstract class Core {
 
     /**
      * The Constant ONE_SECOND and ONE_MSECOND, for one second and one
@@ -21,7 +20,17 @@ public abstract class Core extends AbstractBase {
 
     /** The running. */
     private boolean running;
+    
+    /** The services. */
+    private Services services;
 
+    /**
+     * Instantiates a new core.
+     */
+    public Core() {
+        setServices(new Services());
+    }
+    
     /**
      * Start.
      * 
@@ -65,7 +74,9 @@ public abstract class Core extends AbstractBase {
         // Foo
 
         // Launch screen
-        getScreenManager().init(getSettingsManager().get);
+        getServices().screen.init(
+                getServices().settings.get()
+                    .getResolution());
 
         return this;
     }
@@ -83,8 +94,6 @@ public abstract class Core extends AbstractBase {
             lastFpsTime = 0;
         
         int fps = 0;
-        
-        ScreenManager screen = getScreenManager();
         
         // keep looping round til the game ends
         while (isRunning()) {
@@ -114,10 +123,12 @@ public abstract class Core extends AbstractBase {
             update(delta);
 
             // draw everyting
-            Graphics2D graphics = screen.getGraphics();
+            Graphics2D graphics = 
+                    getServices().screen.getGraphics();
             draw(graphics);
             graphics.dispose();
-            screen.update();
+            
+            getServices().screen.update();
 
             // we want each frame to take 10 milliseconds, to do this
             // we've recorded when we started the frame. We add 10 milliseconds
@@ -145,4 +156,24 @@ public abstract class Core extends AbstractBase {
      * @param g the g
      */
     public abstract void draw(Graphics2D g);
+
+    /**
+     * Gets the services.
+     *
+     * @return the services
+     */
+    public Services getServices() {
+        return services;
+    }
+
+    /**
+     * Sets the services.
+     *
+     * @param services the services to set
+     * @return the core
+     */
+    public Core setServices(Services services) {
+        this.services = services;
+        return this;
+    }
 }

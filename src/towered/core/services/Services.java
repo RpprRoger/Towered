@@ -1,39 +1,36 @@
-package towered.core;
+package towered.core.services;
 
-import towered.core.services.ExternalPipe;
-import towered.core.services.InternalPipe;
-import towered.core.services.ScreenManager;
-import towered.core.services.SettingsManager;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class AbstractBase.
  */
-public abstract class AbstractBase {
+public class Services {
     
     /** Services. */
     
     /** External pipe */
-    private ExternalPipe externalPipe; //ExternalPipe
+    public ExternalPipe external; //ExternalPipe
     
     /** The internal pipe. */
-    private InternalPipe internalPipe; // InternalPipe
+    public InternalPipe internal; // InternalPipe
     
     /** The screen manager. */
-    private ScreenManager screenManager;
+    public ScreenManager screen;
     
     /** The settings manager. */
-    private SettingsManager settingsManager;
+    public SettingsManager settings;
     
     //private Logger logger; // Logger maybe just be static
     
     /**
      * Instantiates a new abstract base.
      */
-    public AbstractBase() {
+    public Services() {
         this.setExternalPipe(new ExternalPipe())
             .setInternalPipe(new InternalPipe())
-            .setScreenManager(new ScreenManager());
+            .setScreenManager(new ScreenManager())
+            .setSettingsManager(new SettingsManager());
     }
 
     /**
@@ -42,7 +39,7 @@ public abstract class AbstractBase {
      * @return the externalPipe
      */
     public ExternalPipe getExternalPipe() {
-        return externalPipe;
+        return external;
     }
 
     /**
@@ -51,8 +48,8 @@ public abstract class AbstractBase {
      * @param externalPipe the externalPipe to set
      * @return the abstract base
      */
-    public AbstractBase setExternalPipe(ExternalPipe externalPipe) {
-        this.externalPipe = externalPipe;
+    public Services setExternalPipe(ExternalPipe externalPipe) {
+        this.external = externalPipe;
         return this;
     }
 
@@ -62,7 +59,7 @@ public abstract class AbstractBase {
      * @return the internalPipe
      */
     public InternalPipe getInternalPipe() {
-        return internalPipe;
+        return internal;
     }
 
     /**
@@ -71,8 +68,8 @@ public abstract class AbstractBase {
      * @param internalPipe the internalPipe to set
      * @return the abstract base
      */
-    public AbstractBase setInternalPipe(InternalPipe internalPipe) {
-        this.internalPipe = internalPipe;
+    public Services setInternalPipe(InternalPipe internalPipe) {
+        this.internal = internalPipe;
         return this;
     }
 
@@ -82,7 +79,7 @@ public abstract class AbstractBase {
      * @return the screenManager
      */
     public ScreenManager getScreenManager() {
-        return screenManager;
+        return screen;
     }
 
     /**
@@ -91,8 +88,8 @@ public abstract class AbstractBase {
      * @param screenManager the screenManager to set
      * @return the abstract base
      */
-    public AbstractBase setScreenManager(ScreenManager screenManager) {
-        this.screenManager = screenManager;
+    public Services setScreenManager(ScreenManager screenManager) {
+        this.screen = screenManager;
         return this;
     }
 
@@ -100,14 +97,14 @@ public abstract class AbstractBase {
      * @return the settingsManager
      */
     public SettingsManager getSettingsManager() {
-        return settingsManager;
+        return settings;
     }
 
     /**
      * @param settingsManager the settingsManager to set
      */
-    public AbstractBase setSettingsManager(SettingsManager settingsManager) {
-        this.settingsManager = settingsManager;
+    public Services setSettingsManager(SettingsManager settingsManager) {
+        this.settings = settingsManager;
         return this;
     }
 }

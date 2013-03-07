@@ -6,6 +6,7 @@
 package towered.core.services;
 
 import towered.core.Settings;
+import towered.core.factories.Factory;
 import towered.core.factories.SettingsFactory;
 
 // TODO: Auto-generated Javadoc
@@ -36,7 +37,7 @@ public class SettingsManager {
      */
     public SettingsManager init(ExternalPipe ePipe) {
         
-        // Do foo on the pipe to gather the settings file from the default location.
+        // Do foo on the pipe to gather the settings file from the default location.        
         
         return this;
     }

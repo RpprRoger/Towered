@@ -14,7 +14,10 @@ import towered.core.factories.UtilFactory;
 // TODO: Auto-generated Javadoc
 /**
  * The Class Logger.
- *
+ * TODO: This should open an output stream to the logger file
+ * and write to it, to enable 
+ *          exception.printstacktrace(logger file)
+ *          
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
  * @created 25 Feb 2013
  * @project Towered

@@ -14,7 +14,6 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import towered.Main;
-import towered.core.Settings;
 import towered.core.exceptions.ContentsLostException;
 import towered.core.exceptions.FrameIsNullException;
 import towered.core.factories.ScreenFactory;
