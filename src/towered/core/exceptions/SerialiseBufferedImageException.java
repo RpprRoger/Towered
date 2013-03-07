@@ -24,7 +24,7 @@ public class SerialiseBufferedImageException extends RuntimeException {
      * No supported graphics modes exception.
      */
     public SerialiseBufferedImageException() {
-        Logger.error("Could not find supported graphics modes for this device.");
+        Logger.error("Failed to ");
         
         Logger.logToFile(getStackTrace().toString());
     }
