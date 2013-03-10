@@ -3,6 +3,7 @@ package towered.core.factories;
 import java.awt.DisplayMode;
 import java.util.HashMap;
 
+import towered.core.Logger;
 import towered.core.Settings;
 
 // TODO: Auto-generated Javadoc
@@ -19,10 +20,11 @@ public class SettingsFactory {
      * @param jump the jump key
      * @param left the left key
      * @param right the right key
-     * @param reslution the reslution
+     * @param resolution the display mode to use 
      * @return the settings
      */
-    public static Settings createSettings(double difficulty, boolean fullscreen, int jump, int left, int right, DisplayMode resolution) {
+    public static Settings createSettings(
+            double difficulty, boolean fullscreen, int jump, int left, int right, DisplayMode resolution) {
         Settings s = new Settings();
         
         s.setDifficulty(difficulty)
@@ -35,12 +37,24 @@ public class SettingsFactory {
         return s;        
     }
     
+    /**
+     * Serialize.
+     *
+     * @param settings the settings
+     * @return the string
+     */
     public static String serialize(Settings settings) {
         
         return "";
     }
     
-    public HashMap<String, String> toArray(Settings settings) {
+    /**
+     * Settings object HashMap array.
+     *
+     * @param settings the settings
+     * @return the hash map
+     */
+    public HashMap<String, String> toHashMap(Settings settings) {
         HashMap<String, String> settingsMap = new HashMap<String, String>();
         
         settingsMap.put("", "");
@@ -48,9 +62,15 @@ public class SettingsFactory {
         return settingsMap;
     }
     
+    /**
+     * Display mode to string.
+     *
+     * @param subject the subject
+     * @return the string
+     */
     public String toString(DisplayMode subject) {
         return String.format(
-                "%sx%s@%s:%s",
+                "(%s,%s,%s,%s)",
                 subject.getWidth(),
                 subject.getHeight(),
                 subject.getRefreshRate(),
@@ -58,10 +78,27 @@ public class SettingsFactory {
         );
     }
     
+    /**
+     * Display mode from string.
+     * In the format (width, height, bitDepth, refreshrate)
+     *
+     * @param subject the subject
+     * @return the display mode
+     */
     public DisplayMode displayModeFromString(String subject) {
-        if(subject.matches("[0-9].?x[0-9].?@[0-9].?:[0-9].?")) {
+        String[] data = subject.split(",");
+        
+        if(subject.matches("^\\([0-9]+,[0-9]+,[0-9]+,[0-9]+\\)$") && data.length == 4) {
             
-        }        
+            return new DisplayMode(
+                    Integer.valueOf(data[0]),
+                    Integer.valueOf(data[1]),
+                    Integer.valueOf(data[2]),
+                    Integer.valueOf(data[3]));
+            
+        }
+        
+        Logger.info("Failed to convert String to DisplayMode.");
         
         return new DisplayMode(0, 0, 0, 0);
     }

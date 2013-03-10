@@ -3,12 +3,13 @@
  * @created 7 Mar 2013
  * @project Towered
  */
-package towered.core.factories;
+package towered.serialiser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import towered.core.Keys;
 import towered.core.exceptions.SerialiseBufferedImageException;
 
 /**
@@ -21,12 +22,6 @@ import towered.core.exceptions.SerialiseBufferedImageException;
  * @project Towered
  */
 public class SerialiseFactory {
-    
-    public static String 
-        TYPE_SERIALISED_END = "SERIALISED_END",
-        TYPE_SERIALISED_START = "SERIALISED_START",
-        TYPE_BUFFERED_IMAGE = "TYPE_BUFFERED_IMAGE",
-        TYPE_DISPLAY_MODE = "TYPE_DISPLAY_MODE";
     
     /**
      * Write buffered image to the output
@@ -44,7 +39,24 @@ public class SerialiseFactory {
         int[] image = SerialiseFactory.getIntArray(subject);
         
         try {
-            objectOS.writeUTF(TYPE_SERIALISED_START);
+            objectOS.writeObject(
+                    Type.SERIALISE_START);
+            // * TODO: create some sort of header object to store this crap.
+            objectOS.writeObject(
+                    Type.SERIALISE_BUFFERED_IMAGE);
+            
+            objectOS.writeInt( // Start with width
+                    width);
+            
+            objectOS.writeInt( // then the height
+                    height);
+            
+            objectOS.writeObject( // then the object
+                    image);
+            
+            objectOS.writeObject(
+                    Type.SERIALISE_END);
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             throw new SerialiseBufferedImageException();
@@ -90,6 +102,16 @@ public class SerialiseFactory {
         imageOut.getRaster().setPixels(0, 0, width, height, pixels);
         
         return imageOut;
+    }
+    
+    public static String toString(Keys keys) {
+        
+        String converted;
+        
+        for(Map.Entry<String, Object> entry : keys.entrySet()) {
+            
+        }
+        
     }
     
 }

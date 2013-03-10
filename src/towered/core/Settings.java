@@ -28,11 +28,6 @@ public class Settings implements Serializable {
     
     /** The fullscreen. */
     private boolean fullscreen;
-
-    /**
-     * Instantiates a new settings.
-     */
-    public Settings() {}
     
     /*
      * Getters and setters
