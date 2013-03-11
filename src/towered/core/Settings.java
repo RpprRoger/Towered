@@ -1,6 +1,3 @@
-/*
- * Robert Preus-MacLaren
- */
 package towered.core;
 
 import java.awt.DisplayMode;
@@ -19,9 +16,7 @@ public class Settings implements Serializable {
     private DisplayMode resolution;
     
     /** Keys used for re-bindings. */
-    private int jump,
-                left,
-                right;
+    private GameKeys keys;
     
     /** The difficulty. */
     private double difficulty;
@@ -55,68 +50,54 @@ public class Settings implements Serializable {
     }
     
     /**
-     * Sets the jump.
+     * Put keys.
      *
-     * @param key the key
+     * @param keyPairs the key pairs separated by :
      * @return the settings
      */
-    public Settings setJump(int key) {
-        this.jump = key;
+    public Settings setKeys(String... keyPairs) {
+        
+        this.keys = new GameKeys(keyPairs);
         
         return this;
     }
     
     /**
-     * Gets the jump.
+     * Sets the key.
      *
-     * @return the jump
-     */
-    public int getJump() {
-        return this.jump;
-    }
-    
-    /**
-     * Sets the left.
-     *
-     * @param key the key
+     * @param name the name
+     * @param keyCode the key code
      * @return the settings
      */
-    public Settings setLeft(int key) {
-        this.left = key;
+    public Settings setKey(String name, int keyCode) {
+        
+        if(keys == null)
+            keys = new GameKeys();
+        
+        keys.put(name, keyCode);
         
         return this;
     }
     
     /**
-     * Gets the left.
+     * Gets the key.
      *
-     * @return the left
+     * @param name the name
+     * @return the key
      */
-    public int getLeft() {
-        return this.left;
+    public int getKey(String name) {       
+        return keys.getKey(name);
     }
     
     /**
-     * Sets the right.
+     * Gets the keys.
      *
-     * @param key the key
-     * @return the settings
+     * @return the keys
      */
-    public Settings setRight(int key) {
-        this.right = key;
-        
-        return this;
+    public GameKeys getKeys() {
+        return this.keys;
     }
     
-    /**
-     * Gets the right.
-     *
-     * @return the right
-     */
-    public int getRight() {
-        return this.right;
-    }
-
     /**
      * Gets the difficulty.
      *
@@ -154,6 +135,14 @@ public class Settings implements Serializable {
      */
     public Settings setFullscreen(boolean fullscreen) {
         this.fullscreen = fullscreen;
+        return this;
+    }
+
+    /**
+     * @param k
+     */
+    public Settings setKeys(GameKeys keys) {
+        this.keys = keys;
         return this;
     }
 

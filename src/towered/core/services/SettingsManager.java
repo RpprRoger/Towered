@@ -6,7 +6,6 @@
 package towered.core.services;
 
 import towered.core.Settings;
-import towered.core.factories.Factory;
 import towered.core.factories.SettingsFactory;
 
 // TODO: Auto-generated Javadoc

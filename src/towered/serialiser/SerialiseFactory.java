@@ -8,10 +8,13 @@ package towered.serialiser;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 
-import towered.core.Keys;
+import towered.core.GameKeys;
 import towered.core.exceptions.SerialiseBufferedImageException;
+import towered.core.factories.UtilFactory;
 
+// TODO: Auto-generated Javadoc
 /**
  * This classes job is to convert objects into arrays
  * of objects which can be serialised and written on
@@ -102,16 +105,6 @@ public class SerialiseFactory {
         imageOut.getRaster().setPixels(0, 0, width, height, pixels);
         
         return imageOut;
-    }
-    
-    public static String toString(Keys keys) {
-        
-        String converted;
-        
-        for(Map.Entry<String, Object> entry : keys.entrySet()) {
-            
-        }
-        
     }
     
 }

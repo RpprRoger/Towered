@@ -2,7 +2,9 @@ package towered.core.factories;
 
 import java.awt.DisplayMode;
 import java.util.HashMap;
+import java.util.Map;
 
+import towered.core.GameKeys;
 import towered.core.Logger;
 import towered.core.Settings;
 
@@ -17,35 +19,24 @@ public class SettingsFactory {
      *
      * @param difficulty the difficulty
      * @param fullscreen the fullscreen
-     * @param jump the jump key
-     * @param left the left key
-     * @param right the right key
-     * @param resolution the display mode to use 
+     * @param resolution the display mode to use
+     * @param keys the keys
      * @return the settings
      */
     public static Settings createSettings(
-            double difficulty, boolean fullscreen, int jump, int left, int right, DisplayMode resolution) {
+            double difficulty, 
+            boolean fullscreen, 
+            DisplayMode resolution, 
+            GameKeys keys) {
+        
         Settings s = new Settings();
         
         s.setDifficulty(difficulty)
             .setFullscreen(fullscreen)
-            .setJump(jump) // Er space key? TODO: need to get the key numbers for keys..
-            .setLeft(left) // left arrow
-            .setRight(right) // right arrow
-            .setResolution(resolution);
+            .setResolution(resolution)
+            .setKeys(keys);
 
         return s;        
-    }
-    
-    /**
-     * Serialize.
-     *
-     * @param settings the settings
-     * @return the string
-     */
-    public static String serialize(Settings settings) {
-        
-        return "";
     }
     
     /**
@@ -54,28 +45,42 @@ public class SettingsFactory {
      * @param settings the settings
      * @return the hash map
      */
-    public HashMap<String, String> toHashMap(Settings settings) {
+    public static HashMap<String, String> toHashMap(Settings settings) {
         HashMap<String, String> settingsMap = new HashMap<String, String>();
         
-        settingsMap.put("", "");
+        settingsMap.put("difficulty", 
+                String.valueOf(
+                        settings.getDifficulty()));
+        
+        settingsMap.put("keys", 
+                toString(
+                        settings.getKeys()));
+        
+        settingsMap.put("resolution", 
+                toString(
+                        settings.getResolution()));
+        
+        settingsMap.put("fullscreen", 
+                String.valueOf(
+                    settings.isFullscreen()));
         
         return settingsMap;
     }
     
     /**
-     * Display mode to string.
+     * From hash map.
      *
-     * @param subject the subject
-     * @return the string
+     * @param hashMap the hash map
+     * @return the settings
      */
-    public String toString(DisplayMode subject) {
-        return String.format(
-                "(%s,%s,%s,%s)",
-                subject.getWidth(),
-                subject.getHeight(),
-                subject.getRefreshRate(),
-                subject.getBitDepth()
-        );
+    public static Settings fromHashMap(HashMap<String, String> hashMap) {
+        
+        return createSettings(
+                Double.valueOf(hashMap.get("difficulty")),
+                Boolean.valueOf(hashMap.get("fullscreen")),
+                displayModeFromString(hashMap.get("resolution")),
+                keysFromString(hashMap.get("keys")));       
+        
     }
     
     /**
@@ -85,7 +90,7 @@ public class SettingsFactory {
      * @param subject the subject
      * @return the display mode
      */
-    public DisplayMode displayModeFromString(String subject) {
+    public static DisplayMode displayModeFromString(String subject) {
         String[] data = subject.split(",");
         
         if(subject.matches("^\\([0-9]+,[0-9]+,[0-9]+,[0-9]+\\)$") && data.length == 4) {
@@ -113,14 +118,72 @@ public class SettingsFactory {
         
         s.setDifficulty(0.5)
             .setFullscreen(false)
-            .setJump(1) // Er space key? TODO: need to get the key numbers for keys..
-            .setLeft(2) // left arrow
-            .setRight(3) // right arrow
             .setResolution(
                     new DisplayMode(600, 600, 16, 60)
             );
 
         return s;
+    }
+    
+    /**
+     * Display mode to string.
+     *
+     * @param subject the subject
+     * @return the string
+     */
+    public static String toString(DisplayMode subject) {
+        return String.format(
+                "(%s,%s,%s,%s)",
+                subject.getWidth(),
+                subject.getHeight(),
+                subject.getRefreshRate(),
+                subject.getBitDepth()
+        );
+    }
+
+    /**
+     * To string.
+     *
+     * @param keys the keys
+     * @return the string
+     */
+    public static String toString(GameKeys keys) {
+
+        String[] settingStrings = new String[keys.size()];
+        int i = 0;
+        
+        for(Map.Entry<String, Integer> entry : keys.entrySet()) {
+            
+            String name = entry.getKey();
+            
+            String keyCode = "" + entry.hashCode();
+            
+            settingStrings[i] = String.format("%s:%s", name, keyCode);
+            
+            i++;
+        }
+
+        return "{" + UtilFactory.joinArray(settingStrings, ",") + "}";
+        
+    }
+    
+    /**
+     * From string.
+     *
+     * @param keyHashMap the key hash map
+     * @return the keys
+     */
+    public static GameKeys keysFromString(String keyHashMap) {
+        
+        if(keyHashMap.matches("\\{([^}]+)\\}")) {
+            
+            String[] keys = keyHashMap.split(",");
+            
+            return new GameKeys(keys);
+            
+        }
+        
+        return new GameKeys();
     }
     
 }

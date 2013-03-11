@@ -6,7 +6,6 @@
 package towered.core;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import towered.core.exceptions.KeyNotFoundException;
 
@@ -18,26 +17,37 @@ import towered.core.exceptions.KeyNotFoundException;
  * @created 10 Mar 2013
  * @project Towered
  */
-public class Keys extends HashMap<String, Integer> {
-    
+public class GameKeys extends HashMap<String, Integer> {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 6716077170305118680L;
+
     /**
      * Instantiates a new keys.
      *
      * @param keyPairs the key pairs
      */
-    public Keys(String... keyPairs) {
+    public GameKeys(String... keyPairs) {
         
         for(int i = 0; i < keyPairs.length; i++) {
+
+            String keyPair = keyPairs[i];
             
-            String key = keyPairs[i].split(".")[0];
+            if(keyPair.indexOf(":") > 0) {
             
-            int keyCode = Integer.parseInt(keyPairs[i].split(".")[1]);
-            
-            put(key, keyCode);
+                String key = keyPairs[i].split(":")[0];
+                
+                int keyCode = Integer.parseInt(keyPairs[i].split(":")[1]);
+                
+                put(key, keyCode);
+                
+            }
             
         }
         
     }
+    
+    public GameKeys() {}
     
     /**
      * Gets the key.
