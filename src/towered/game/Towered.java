@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 
 import towered.core.Core;
 import towered.core.Logger;
+import towered.game.modes.GameMode;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -21,9 +22,9 @@ import towered.core.Logger;
  */
 public class Towered extends Core implements Runnable {
     
+    private GameMode runningMode;
+    
     public Core init() {
-        
-        
         
         return super.init();
     }
@@ -62,6 +63,16 @@ public class Towered extends Core implements Runnable {
     @Override
     public synchronized void draw(Graphics2D g) {
         // TODO Auto-generated method stub
+        
+        // We draw:
+        // map
+        // buildings
+        // enemies
+        // characters
+        // map foreground
+        
+        //? fill in skybox?
+        
         g.setColor(Color.red);
         g.drawString("hello world", 50, 50);
         g.fillRect(0, 0, 600, 600);

@@ -33,6 +33,8 @@ public class GameKeys extends HashMap<String, Integer> {
 
             String keyPair = keyPairs[i];
             
+            Logger.info(keyPair);
+            
             if(keyPair.indexOf(":") > 0) {
             
                 String key = keyPairs[i].split(":")[0];

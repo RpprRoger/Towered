@@ -8,7 +8,7 @@ import towered.core.GameKeys;
 import towered.core.Logger;
 import towered.core.Settings;
 
-// TODO: Auto-generated Javadoc
+// TODO: Convert serialisation to use yaml parsers.
 /**
  * A factory for creating Settings objects.
  */
@@ -93,7 +93,7 @@ public class SettingsFactory {
     public static DisplayMode displayModeFromString(String subject) {
         String[] data = subject.split(",");
         
-        if(subject.matches("^\\([0-9]+,[0-9]+,[0-9]+,[0-9]+\\)$") && data.length == 4) {
+        if(data.length == 4) {
             
             return new DisplayMode(
                     Integer.valueOf(data[0]),
@@ -120,7 +120,12 @@ public class SettingsFactory {
             .setFullscreen(false)
             .setResolution(
                     new DisplayMode(600, 600, 16, 60)
-            );
+            )
+            .setKeys(new GameKeys(new String[]{
+                    "left:1",
+                    "right:2",
+                    "jump:3"
+            }));
 
         return s;
     }
@@ -133,7 +138,7 @@ public class SettingsFactory {
      */
     public static String toString(DisplayMode subject) {
         return String.format(
-                "(%s,%s,%s,%s)",
+                "%s,%s,%s,%s",
                 subject.getWidth(),
                 subject.getHeight(),
                 subject.getRefreshRate(),
@@ -163,7 +168,7 @@ public class SettingsFactory {
             i++;
         }
 
-        return "{" + UtilFactory.joinArray(settingStrings, ",") + "}";
+        return UtilFactory.joinArray(settingStrings, ",");
         
     }
     
@@ -174,16 +179,10 @@ public class SettingsFactory {
      * @return the keys
      */
     public static GameKeys keysFromString(String keyHashMap) {
+            
+        String[] keys = keyHashMap.split(",");
         
-        if(keyHashMap.matches("\\{([^}]+)\\}")) {
-            
-            String[] keys = keyHashMap.split(",");
-            
-            return new GameKeys(keys);
-            
-        }
-        
-        return new GameKeys();
+        return new GameKeys(keys);
     }
     
 }

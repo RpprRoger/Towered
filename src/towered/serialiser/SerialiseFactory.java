@@ -7,14 +7,12 @@ package towered.serialiser;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
 
-import towered.core.GameKeys;
 import towered.core.exceptions.SerialiseBufferedImageException;
-import towered.core.factories.UtilFactory;
 
-// TODO: Auto-generated Javadoc
+// TODO:Refactor and split off different parts of this class into smaller classes.
 /**
  * This classes job is to convert objects into arrays
  * of objects which can be serialised and written on
@@ -25,6 +23,35 @@ import towered.core.factories.UtilFactory;
  * @project Towered
  */
 public class SerialiseFactory {
+    
+    /**
+     * Read buffered image from an input stream.
+     * We assume that SERIALISE_START and 
+     * SERIALISE_BUFFERED_IMAGE has been read 
+     * from the stream
+     * 
+     * @param objectOS the object os
+     * @return the buffered image
+     */
+    public static BufferedImage readBufferedImage(ObjectInputStream objectIS) {        
+        try {
+            
+            int width = objectIS.readInt(),
+                    height = objectIS.readInt();
+            
+            int[] image = (int[])objectIS.readObject();
+            
+            return getBufferedImage(width, height, image);
+            
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new SerialiseBufferedImageException();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
     
     /**
      * Write buffered image to the output

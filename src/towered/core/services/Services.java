@@ -1,5 +1,12 @@
 package towered.core.services;
 
+import java.io.File;
+
+import towered.core.Settings;
+import towered.core.factories.SettingsFactory;
+import towered.core.factories.UtilFactory;
+import towered.resources.Resources;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -9,70 +16,74 @@ public class Services {
     
     /** Services. */
     
-    /** External pipe */
-    public ExternalPipe external; //ExternalPipe
-    
-    /** The internal pipe. */
-    public InternalPipe internal; // InternalPipe
-    
     /** The screen manager. */
     public ScreenManager screen;
     
     /** The settings manager. */
     public SettingsManager settings;
     
-    //private Logger logger; // Logger maybe just be static
+    /** The resources. */
+    private Resources resources;
     
     /**
      * Instantiates a new abstract base.
      */
     public Services() {
-        this.setExternalPipe(new ExternalPipe())
-            .setInternalPipe(new InternalPipe())
-            .setScreenManager(new ScreenManager())
-            .setSettingsManager(new SettingsManager());
+        this.setScreenManager(new ScreenManager())
+            .setSettingsManager(new SettingsManager())
+            .setResources(new Resources());
     }
-
+    
     /**
-     * Gets the external pipe.
-     *
-     * @return the externalPipe
+     * Inits the.
      */
-    public ExternalPipe getExternalPipe() {
-        return external;
+    public void init() {
+        
+        if(settingsExists()) {
+            settings.setActiveSettings(readSettings());
+        } else {
+            Settings s = SettingsFactory.instantiateDefaultSettings();
+            
+            writeSettings(s);
+            
+            settings.setActiveSettings(s);
+        }
+        
+        screen.init(
+                settings.get().getResolution());
+        
     }
-
+    
     /**
-     * Sets the external pipe.
+     * Settings exists.
      *
-     * @param externalPipe the externalPipe to set
-     * @return the abstract base
+     * @return true, if successful
      */
-    public Services setExternalPipe(ExternalPipe externalPipe) {
-        this.external = externalPipe;
-        return this;
+    public boolean settingsExists() {
+        return new File(resources.getSettingsPath()).exists();
     }
-
+    
     /**
-     * Gets the internal pipe.
+     * Write settings.
      *
-     * @return the internalPipe
+     * @param settings the settings
+     * @return true, if successful
      */
-    public InternalPipe getInternalPipe() {
-        return internal;
+    public boolean writeSettings(Settings settings) {
+        return UtilFactory.writeHashMapToDisk(
+                resources.getSettingsPath(), SettingsFactory.toHashMap(settings));
     }
-
+    
     /**
-     * Sets the internal pipe.
+     * Read settings.
      *
-     * @param internalPipe the internalPipe to set
-     * @return the abstract base
+     * @return the settings
      */
-    public Services setInternalPipe(InternalPipe internalPipe) {
-        this.internal = internalPipe;
-        return this;
+    public Settings readSettings() {
+        return SettingsFactory.fromHashMap(
+                UtilFactory.readHashMap(resources.getSettingsPath()));
     }
-
+        
     /**
      * Gets the screen manager.
      *
@@ -94,6 +105,8 @@ public class Services {
     }
 
     /**
+     * Gets the settings manager.
+     *
      * @return the settingsManager
      */
     public SettingsManager getSettingsManager() {
@@ -101,10 +114,29 @@ public class Services {
     }
 
     /**
+     * Sets the settings manager.
+     *
      * @param settingsManager the settingsManager to set
+     * @return the services
      */
     public Services setSettingsManager(SettingsManager settingsManager) {
         this.settings = settingsManager;
         return this;
     }
+
+    /**
+     * @return the resources
+     */
+    public Resources getResources() {
+        return resources;
+    }
+
+    /**
+     * @param resources the resources to set
+     */
+    public Services setResources(Resources resources) {
+        this.resources = resources;
+        return this;
+    }
+
 }

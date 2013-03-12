@@ -24,22 +24,7 @@ public class SettingsManager {
     /**
      * Instantiates a new settings manager.
      */
-    public SettingsManager() {
-        setActiveSettings(SettingsFactory.instantiateDefaultSettings());
-    }
-    
-    /**
-     * Inits the settings using the instance of externalpipe.
-     *
-     * @param ePipe the e pipe
-     * @return the settings manager
-     */
-    public SettingsManager init(ExternalPipe ePipe) {
-        
-        // Do foo on the pipe to gather the settings file from the default location.        
-        
-        return this;
-    }
+    public SettingsManager() {}
     
     /**
      * Gets the Settings currently in use.

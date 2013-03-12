@@ -2,6 +2,7 @@ package towered.core;
 
 import java.awt.Graphics2D;
 
+import towered.core.services.ScreenManager;
 import towered.core.services.Services;
 
 // TODO: Auto-generated Javadoc
@@ -74,9 +75,7 @@ public abstract class Core {
         // Foo
 
         // Launch screen
-        getServices().screen.init(
-                getServices().settings.get()
-                    .getResolution());
+        getServices().init();
 
         return this;
     }
@@ -86,7 +85,7 @@ public abstract class Core {
      */
     public void gameLoop() {
 
-        final int TARGET_FPS = 60; // TODO: Change this variable refresh rate.
+        final int TARGET_FPS = 60; // TODO: Change this to a variable refresh rate.
         final long OPTIMAL_TIME = ONE_SECOND / TARGET_FPS;
         
         long 

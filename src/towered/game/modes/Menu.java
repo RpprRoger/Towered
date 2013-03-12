@@ -1,6 +1,6 @@
 /**
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
- * @created 4 Mar 2013
+ * @created 12 Mar 2013
  * @project Towered
  */
 package towered.game.modes;
@@ -10,11 +10,20 @@ import java.awt.Graphics2D;
 /**
  * @author Robert Preus-MacLaren <rpprroger@gmail.com>
  *
- * @created 4 Mar 2013
+ * @created 12 Mar 2013
  *
  * @project Towered
  */
-public class Overworld extends GameMode {
+public class Menu extends GameMode {
+
+    /* (non-Javadoc)
+     * @see towered.game.modes.GameMode#init()
+     */
+    @Override
+    public void init() {
+        // TODO Auto-generated method stub
+        
+    }
 
     /* (non-Javadoc)
      * @see towered.game.modes.GameMode#draw(java.awt.Graphics2D)
@@ -30,15 +39,6 @@ public class Overworld extends GameMode {
      */
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    /* (non-Javadoc)
-     * @see towered.game.modes.GameMode#init()
-     */
-    @Override
-    public void init() {
         // TODO Auto-generated method stub
         
     }
