@@ -94,6 +94,8 @@ public abstract class Core {
             lastFpsTime = 0;
         
         int fps = 0;
+
+        ScreenManager screen = getServices().screen;
         
         // keep looping round til the game ends
         while (isRunning()) {
@@ -123,12 +125,11 @@ public abstract class Core {
             update(delta);
 
             // draw everyting
-            Graphics2D graphics = 
-                    getServices().screen.getGraphics();
+            Graphics2D graphics = screen.getGraphics();
             draw(graphics);
             graphics.dispose();
             
-            getServices().screen.update();
+            screen.update();
 
             // we want each frame to take 10 milliseconds, to do this
             // we've recorded when we started the frame. We add 10 milliseconds
