@@ -7,31 +7,52 @@ do a refresh on the project, don't forget!
 
 ### TODO
 
-    - Write a proper todo list.
-    - Look into using a better IDE, sublime?
+    Finish of serialise magic.
+    Do less refactoring.
 
 ### Project layout
+    
+    This has grown quite a bit. I have done away with ExternalPipe and InternalPipe and moved reading and writing text
+    files to the utilfactory. The resources will instead be contained and managed by resources.java, we can use the
+    resources class to get resources from within the jar files. Then we can user the home directory to add
+    custom maps and characters/enemies/stories etc without imbeding in the jar file.
 
     - towered
-        * Main.java // Contains minor logic and instantiates new Towered. TODO: Parse command line params
+        > Main.java
         - core
-            * AbstractBase.java // Contains Service instantiation and getters/setters
-            * Core.java // Contains most of the Core game logic, basic game loop and variables such as FPS
-            * Logger.java // Static logger class, consider moving?
-            * Settings.java // Settings object containing game settings TODO: Save object to disk using simple text.
+            > Core.java
+            > GameKeys.java
+            > Logger.java
+            > Settings.java
             - exceptions
-                * ContentLostException.java // Exceptions currently just log using logger
-                * FrameIsNullException.java // Maybe these should do something cleverer?
-                * NoSupportedGraphicsModesException.java
+                > ContentsLostException.java
+                > FrameIsNullException.java
+                > KeyNotFoundException.java
+                > NoSupportedGraphicsModesException.java
+                > SerialiseBufferedImageException.java
+                > SettingsNotFoundException.java
             - factories
-                * ScreenFactory.java // Screen factory contains tools and setup for the JFrame and other graphics device foo
-                * SettingsFactory.java // Settings factory contains settings maker and will contain serialization foo
+                > ScreenFactory.java
+                > SettingsFactory.java
+                > UtilFactory.java
+            - services
+                > ScreenManager.java
+                > Services.java
+                > SettingsManager.java
         - game
-            * Towered.java // The actual game class, will contain game modes and active game modes
-            - engine // Will contain core engine logic, Physics etc
+            > Towered.java
+            - engine
+                - scaler
+            - entity
+                > Entity.java
+                > Map.java
             - modes
-                * GameMode.java // Tests into how game modes will be stored and actived. This will be the abstract base to extend upon
-                * Overworld.java // Example game mode, where we are in an overworld with shops etc
+                > GameMode.java
+                > Menu.java
+                > Overworld.java
         - resources
-            Resources.java // Main pipe for resource files, possibly un-needed, maybe contains hashmaps for different objects. e.g. maps
-        -window // Possibly redundant
+            > Resources.java
+        - seraliser
+            > SerialiseFactory.java
+            > Type.java
+    
