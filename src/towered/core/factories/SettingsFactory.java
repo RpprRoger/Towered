@@ -161,7 +161,7 @@ public class SettingsFactory {
             
             String name = entry.getKey();
             
-            String keyCode = "" + entry.hashCode();
+            String keyCode = "" + entry.getValue();
             
             settingStrings[i] = String.format("%s:%s", name, keyCode);
             

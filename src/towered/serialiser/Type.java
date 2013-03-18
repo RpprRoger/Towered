@@ -14,7 +14,7 @@ package towered.serialiser;
  */
 public enum Type {
     
-    SERIALISE_START(0),
+    SERIALISE_START(0x01),
     SERIALISE_END(-1),
     SERIALISE_BUFFERED_IMAGE(1);
     

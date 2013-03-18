@@ -55,4 +55,13 @@ do a refresh on the project, don't forget!
         - seraliser
             > SerialiseFactory.java
             > Type.java
+ 
+### External Resources
+
+    I have found some free to use resources I'll be using to work on game logic with ( I can't draw or make music)
     
+    - <a href="http://www.jamendo.com">http://www.jamendo.com</a> Has some cool music, I found some cool music by
+        searching for 16bit
+    - <a href="http://www.widgetworx.com/widgetworx/portfolio/spritelib.html">Widget works sprite lib</a> has some good basic drawn
+        sprites.
+        
