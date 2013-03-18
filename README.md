@@ -56,7 +56,7 @@ do a refresh on the project, don't forget!
             > SerialiseFactory.java
             > Type.java
  
-### External Resources
+External Resources
 
     I have found some free to use resources I'll be using to work on game logic with ( I can't draw or make music)
     
