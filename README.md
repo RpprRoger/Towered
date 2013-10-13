@@ -7,15 +7,15 @@ do a refresh on the project, don't forget!
 
 ### TODO
 
-    Finish of serialise magic.
-    Do less refactoring.
+Finish of serialise magic.
+Do less refactoring.
 
 ### Project layout
     
-    This has grown quite a bit. I have done away with ExternalPipe and InternalPipe and moved reading and writing text
-    files to the utilfactory. The resources will instead be contained and managed by resources.java, we can use the
-    resources class to get resources from within the jar files. Then we can user the home directory to add
-    custom maps and characters/enemies/stories etc without imbeding in the jar file.
+This has grown quite a bit. I have done away with ExternalPipe and InternalPipe and moved reading and writing text
+files to the utilfactory. The resources will instead be contained and managed by resources.java, we can use the
+resources class to get resources from within the jar files. Then we can user the home directory to add
+custom maps and characters/enemies/stories etc without imbeding in the jar file.
 
     - towered
         > Main.java

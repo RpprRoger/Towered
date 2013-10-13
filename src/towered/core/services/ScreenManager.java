@@ -84,7 +84,7 @@ public class ScreenManager {
      * Update.
      */
     public void update() {
-        if(!getBufferStrategy().contentsLost()) {
+        if( !getBufferStrategy().contentsLost() ) {
             getBufferStrategy().show();
         } else {
             throw new ContentsLostException();

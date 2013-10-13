@@ -37,7 +37,7 @@ public class SerialiseFactory {
         try {
             
             int width = objectIS.readInt(),
-                    height = objectIS.readInt();
+                height = objectIS.readInt();
             
             int[] image = (int[])objectIS.readObject();
             
@@ -65,7 +65,7 @@ public class SerialiseFactory {
     public static void writeBufferedImage(ObjectOutputStream objectOS, BufferedImage subject) {
         
         int width = subject.getWidth(),
-                height = subject.getHeight();
+            height = subject.getHeight();
         int[] image = SerialiseFactory.getIntArray(subject);
         
         try {
